@@ -40,7 +40,8 @@ library(exactextractr)
 ## Example 1
 
 This is a basic practice which guide you step by step to generate survey
-route.
+route. The first step is to change suitability prediction into binary prediciton, which were then transformed into polygons/patches.
+Two procedure were taken to prioritize these patches, by removing tiny patches (here < 5km2) and lwo CI ranked patches (10 CI rear patches).
 
 ``` r
 ### read system file data ###
@@ -50,9 +51,14 @@ r<-raster(system.file("extdata", "WA.tif", package="enmRoute"))
 #### Threshold model prediction at the threshold of 388 ####
 rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 
+## You can also use alternative thresholds to get binary prediction
+#rc <- thd(sdm = r, points = occ, type = "mtp", binary = TRUE)
+#rc <- thd(sdm = r, points = occ, type = "p10", binary = TRUE)
+
 #### Prioritizing patches by removing tiny pieces (<5km2) ####
 pp<-rankCI(rc, p=5)
 
+### This is the patches that were reserved after 1th round optimization. 
 dim(pp)
 #> [1] 31  5
 
@@ -73,6 +79,7 @@ head(pp)
 #### Select high ranked/priority patches by removing the rear 10 CI ranked patches ####
 sub<-subset(pp,Rank > 10)
 
+### This is the patches that were reserved after 2th round optimization.
 dim(sub)
 #> [1] 21  5
 
@@ -155,6 +162,7 @@ rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 #### Prioritizing patches by removing tiny pieces (<1km2) ####
 pp<-rankCI(rc, p=1)
 
+### This is the patches that were reserved after 1th round optimization.
 dim(pp)
 #> [1] 155   5
 
@@ -178,6 +186,7 @@ head(pp)
 ###### u, number of patches to be iterative removed ### 
 cc<-tuneSite(shp=pp, r=55, u=5)
 
+### This is the patches that were reserved after 2th round optimization.
 dim(cc)
 #> [1] 19  5
 
