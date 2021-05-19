@@ -141,7 +141,7 @@ leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMar
 ## Example 2
 
 This is an advanced practice which could help you optimize survey route.
-It works by iterative running above procedure to generate the
+It works firstly by iterative running above procedure to generate the
 relationship between survey expenses and number of patches to be
 sampled. Total survey expense time would be depended on surveying time
 spent in these high ranked patches and driving time between the patches.
@@ -150,7 +150,9 @@ these patches, where patch survey time would be linearly scaled with
 the accumulated capacity in these high ranked patches, as high
 accumulated capacity suggest more sample traps should be deployed.
 In this example, i reserved 100 patches after remvoing tiny (<1km2) and low ranked( rear 55 patches) 
-to test the relationship between survey expense and survey time.
+to test the relationship between survey expense and survey time. 
+With this relarionship, field manager could decide which/how many patches are going to be used for deploying samples, 
+given available time and resource. 
 ``` r
 ### read system file data ###
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
