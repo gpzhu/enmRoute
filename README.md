@@ -151,7 +151,7 @@ the accumulated capacity in these high ranked patches, as high
 accumulated capacity suggest more sample traps should be deployed.
 In this example, i reserved 100 patches after remvoing tiny (<1km2) and low ranked( rear 55 patches) 
 to test the relationship between survey expense and survey time. 
-With this relarionship, field manager could decide which/how many patches are going to be used for deploying samples, 
+With this relationship, field manager could decide which/how many patches are going to be used for deploying samples, 
 given available time and resource. 
 ``` r
 ### read system file data ###
