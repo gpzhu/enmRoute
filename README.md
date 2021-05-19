@@ -139,10 +139,11 @@ relationship between survey expenses and number of patches to be
 sampled. Total survey expense time would be depended on surveying time
 spent in these high ranked patches and driving time between the patches.
 The driving time would be related to the distance between centroids of
-these patches, where patch surveying time would be linearly scaled with
+these patches, where patch survey time would be linearly scaled with
 the accumulated capacity in these high ranked patches, as high
 accumulated capacity suggest more sample traps should be deployed.
-
+In this example, i reserved 100 patches after remvoing tiny (<1km2) and low ranked( rear 55 patches) 
+to test the relationship between survey expense and survey time.
 ``` r
 ### read system file data ###
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
