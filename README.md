@@ -103,7 +103,7 @@ head(ct)
 #> Bounding box:  xmin: -122.2592 ymin: 47.88304 xmax: -121.7411 ymax: 48.37726
 #> Geodetic CRS:  WGS 84 (with axis order normalized for visualization)
 #>    WA                   geometry  Capacity Patch_size Rank
-#> 4   1  POINT (-121.796 47.88304) 557078.88  856.99994   26
+#> 4   1 POINT (-121.796 47.883040) 557078.88  856.99994   26
 #> 7   1 POINT (-121.9462 47.92856)  51313.00   87.00003   11
 #> 11  1 POINT (-122.0645 48.16885)  59964.98  108.99998   14
 #> 13  1 POINT (-122.0441 48.26703) 167291.97  271.00000   23
