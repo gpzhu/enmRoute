@@ -39,7 +39,7 @@ library(exactextractr)
 
 ## Example 1
 
-This is a basic example which guide you step by step to generate survey
+This is a basic practice which guide you step by step to generate survey
 route.
 
 ``` r
