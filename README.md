@@ -58,7 +58,7 @@ rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 #### Prioritizing patches by removing tiny pieces (<5km2) ####
 pp<-rankCI(rc, p=5)
 
-### This is the patches that were reserved after 1th round optimization. 
+### These are patches that were reserved after 1th round optimization. 
 dim(pp)
 #> [1] 31  5
 
@@ -79,7 +79,7 @@ head(pp)
 #### Select high ranked/priority patches by removing the rear 10 CI ranked patches ####
 sub<-subset(pp,Rank > 10)
 
-### This is the patches that were reserved after 2th round optimization.
+### These are patches that were reserved after 2th round optimization.
 dim(sub)
 #> [1] 21  5
 
@@ -162,7 +162,7 @@ rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 #### Prioritizing patches by removing tiny pieces (<1km2) ####
 pp<-rankCI(rc, p=1)
 
-### This is the patches that were reserved after 1th round optimization.
+### These are patches that were reserved after 1th round optimization.
 dim(pp)
 #> [1] 155   5
 
@@ -186,7 +186,7 @@ head(pp)
 ###### u, number of patches to be iterative removed ### 
 cc<-tuneSite(shp=pp, r=55, u=5)
 
-### This is the patches that were reserved after 2th round optimization.
+### These are patches that were reserved after 2th round optimization.
 dim(cc)
 #> [1] 19  5
 
