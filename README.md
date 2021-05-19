@@ -171,7 +171,7 @@ head(pp)
 #> 5  1 POLYGON ((-121.938 47.85472...  17536.99   29.00000   96
 #> 6  1 POLYGON ((-121.9249 47.858,...  12221.00   23.00000   70
 
-###### Tune candidate site for Routeing ##########
+###### Tune candidate sites for routing ##########
 ###### shp is the output of rankCI ###
 ###### r, number of low ranked patches to be removed ###
 ###### u, number of patches to be iterative removed ### 
