@@ -40,7 +40,7 @@ library(exactextractr)
 ## Example 1
 
 This is a basic example which guide you step by step to generate survey
-route
+route.
 
 ``` r
 ### read system file data ###
@@ -133,10 +133,10 @@ leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMar
 
 ## Example 2
 
-This is an advanced example which could help you optimize survey route.
+This is an advanced practice which could help you optimize survey route.
 It works by iterative running above procedure to generate the
 relationship between survey expenses and number of patches to be
-sampled. Total survey time (TS) would be depended on surveying time
+sampled. Total survey expense time would be depended on surveying time
 spent in these high ranked patches and driving time between the patches.
 The driving time would be related to the distance between centroids of
 these patches, where patch surveying time would be linearly scaled with
