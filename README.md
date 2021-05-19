@@ -41,7 +41,7 @@ library(exactextractr)
 
 This is a basic practice which guide you step by step to generate survey
 route. The first step is to change Ecological Niche Model suitability prediction into binary prediciton, which were then transformed into polygons/patches.
-Two procedures were proceed to prioritize these patches, by removing tiny patches (here < 5km2) and discarding lwo capacity index (CI) ranked patches (10 CI rear patches).
+Two procedures were proceed to prioritize these patches, by removing tiny patches (here < 5km2) and discarding lwo capacity index (CI) ranked patches (here, 10 CI rear patches).
 
 ``` r
 ### read system file data ###
