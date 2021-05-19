@@ -1,0 +1,139 @@
+---
+output: github_document
+always_allow_html: true
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# enmRoute
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The idea of this package is to us ecological niche model prediction for optimizing biodiversity survey route.
+
+Our purpose is to capture more individuals using our ecological niche model based survey route.
+
+We hope our model based route could help filed manager to design samplinmg route for regional and national survey.
+
+## Installation
+
+We can install the `enmRoute` package from GitHub, using the `devtools` package:
+``` r
+library(devtools)
+devtools::install_github('gpzhu/enmRoute')
+```
+```{r libs}
+library(enmRoute)
+library(raster)
+library(leaflet)
+library(maptiles)
+library(mapsf)
+library(osrm)
+library(ggpubr)
+library(smoothr)
+library(exactextractr)
+```
+
+## Example 1
+
+This is a basic example which guide you step by step to generate survey route
+
+```{r example1}
+### read system file data ###
+occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
+r<-raster(system.file("extdata", "WA.tif", package="enmRoute"))
+
+#### Threshold model prediction ####
+rc <- thd(sdm = r, threshold = 388, binary = TRUE)
+
+#### Prioritizing patches by removing tiny pieces ####
+pp<-rankCI(rc, p=5)
+dim(pp)
+head(pp)
+
+#### subset patches based on CI rank ####
+sub<-subset(pp,Rank > 10)
+dim(sub)
+head(sub)
+
+### Get centroid and surveillance route ####
+ct<-st_centroid(sub)
+dim(ct)
+head(ct)
+
+### ready runing enmRoute ###
+mm<-enmRoute(pred=rc,p=5,r=10) 
+mytrip<-mm$geometry
+xy<-st_coordinates(ct)
+
+### results and plot
+sum(mm$duration)
+sum(mm$distance)
+leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
+```
+
+## Example 2
+
+This is a advanced example which could help you optimize survey route.
+It works by iterative runing the above approach to generate the relationship between survey expenses and number of patches to be sampled.
+Total survey time (TS) would be depended on surveying time spent in these high ranked patches and driving time between the patches.
+The driving time would be related to the distance between centroids of these patches, where patch surveying time would be linearly scaled with the accumulated capacity in these high ranked patches, as high accumulated capacity suggest more sample traps should be deployed. 
+
+
+```{r example2}
+### read system file data ###
+occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
+r<-raster(system.file("extdata", "WA.tif", package="enmRoute"))
+
+#### Threshold model prediction ####
+rc <- thd(sdm = r, threshold = 388, binary = TRUE)
+
+#### Prioritizing patches by removing tiny pieces ####
+pp<-rankCI(rc, p=1)
+dim(pp)
+head(pp)
+
+###### Tune candidate site for Routeing ##########
+###### shp is the output of rankCI ###
+###### r, number of low ranked patches to be removed ###
+###### u, number of patches to be iterative removed ### 
+cc<-tuneSite(shp=pp, r=55, u=5)
+dim(cc)
+head(cc)
+
+###plot tuneSite results###
+eee<-ggplot(cc, aes(x=Proportion_of_patches, y=Driving_time)) +
+  geom_point(size = 5, color = "#FFFFFF", fill = "#000000", shape = 21)+
+  theme(plot.subtitle = element_text(family = "serif", size = 12, colour = "gray0"), 
+        plot.caption = element_text(colour = "gray0"), 
+        axis.title = element_text(size = 12), 
+        axis.text = element_text(size = 12, colour = "gray0"),
+        axis.line = element_line(linetype = "solid"),
+        plot.title = element_text(size = 12)) +labs(y = "Driving time (min)", x = "Proportion of patches to be sampled")+
+        scale_y_continuous(breaks=seq(0,3000,500))
+fff<-ggplot(cc, aes(x=Proportion_of_patches, y=Accumulated_capacity)) +
+  geom_point(size = 5, color = "#FFFFFF", fill = "#000000", shape = 21)+
+  theme(plot.subtitle = element_text(family = "serif", size = 12, colour = "gray0"), 
+        plot.caption = element_text(colour = "gray0"), 
+        axis.title = element_text(size = 12), 
+        axis.text = element_text(size = 12, colour = "gray0"),
+        axis.line = element_line(linetype = "solid"),
+        plot.title = element_text(size = 12)) +labs(y = "Accumulated capacity", x = "Proportion of patches to be sampled")
+ggarrange(eee, fff, labels = c("A", "B"))
+
+```
+
+
+
+
+
