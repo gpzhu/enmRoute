@@ -40,8 +40,8 @@ library(exactextractr)
 ## Example 1
 
 This is a basic practice which guide you step by step to generate survey
-route. The first step is to change suitability prediction into binary prediciton, which were then transformed into polygons/patches.
-Two procedure were taken to prioritize these patches, by removing tiny patches (here < 5km2) and lwo CI ranked patches (10 CI rear patches).
+route. The first step is to change Ecological Niche Model suitability prediction into binary prediciton, which were then transformed into polygons/patches.
+Two procedures were proceed to prioritize these patches, by removing tiny patches (here < 5km2) and discarding lwo capacity index (CI) ranked patches (10 CI rear patches).
 
 ``` r
 ### read system file data ###
