@@ -42,8 +42,8 @@ Two procedures are employed to prioritize these patches, by removing tiny patche
 User inputs data:
 Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions;
 Suitability prediction (sdm): a raster surface representing suitability prediction, that could be attained using ecological niche model;
-Patch size limit (p): minimum patch size that should be considered in the surveying;
-Capacity index limit (r): capacity index used to discard low suitability patches.
+Patch size limit (p): minimum patch size that should be considered in the survey;
+Capacity index limit (r): capacity index limit used to discard low suitable/small size patches.
 ``` r
 ### read system file data ###
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
