@@ -134,12 +134,13 @@ head(ct)
 ### st_write(ct, "My_centroid.shp")
 
 ###########################################################################################
-### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed ###
-### during 1th (p) and 2th (r) rounds prioritization ###
-### ready runing enmRoute and prepare for ploting ###
+### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed,
+### during 1th (p) and 2th (r) rounds prioritizations,
+### so, it is ready to run enmRoute 
 
 mm<-enmRoute(pred=rc, p=5, r=10) 
 
+### loading results ###
 mytrip<-mm$geometry
 
 #### get survey driving time (min) ####
