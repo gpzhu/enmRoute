@@ -52,7 +52,7 @@ r<-raster(system.file("extdata", "WA.tif", package="enmRoute"))
 #### Threshold model prediction at the threshold of 388 ####
 rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 
-## You can also use alternative thresholds to get binary prediction
+## Alternatively, you can use other thresholds (e.g., mtp, p10) to get binary prediction, see detail in thd function
 #rc <- thd(sdm = r, points = occ, type = "mtp", binary = TRUE)
 #rc <- thd(sdm = r, points = occ, type = "p10", binary = TRUE)
 
