@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The aim of this package is to use ecological niche model prediction to optimize biodiversity survey in an expected areas.
+The aim of this package is to use ecological niche model prediction to optimize biodiversity survey in an expected area.
 
 The goal of the package is to capture more individuals in field surveys by using our ecological niche model-based route tool.
 
@@ -36,9 +36,16 @@ library(exactextractr)
 
 ## Example 1
 
-This is a basic practice which guide you step by step to generate survey
-route. The first step is to change Ecological Niche Model suitability prediction into binary prediciton, which were then transformed into polygons/patches.
-Two procedures were proceed to prioritize these patches, by removing tiny patches (here < 5km2) and discarding lwo capacity index (CI) ranked patches (here, 10 CI rear patches).
+This is a basic approach which guides the user step by step to generate a survey route. 
+The first step is to change the Ecological Niche Model suitability prediction into a binary prediction. 
+The binary predictive surface is then transformed into polygons/patches. 
+Two procedures are employed to prioritize these patches, by removing tiny patches (here < 5km2) and discarding low capacity index (CI) ranked patches (here, 10 CI rear patches).
+
+User inputs data
+Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions.
+Suitability prediction (sdm): a raster surface representing suitability prediction, that could be attained using ecological niche model.
+Patch size limit (p): minimum patch size that should be considered in the surveying.
+Capacity index limit (r): capacity index used to discard low suitability patches.
 
 ``` r
 ### read system file data ###
@@ -137,19 +144,25 @@ leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMar
 
 ## Example 2
 
-This is an advanced practice which could help you optimize survey route.
-It works firstly by iterative running above procedure to generate the
-relationship between survey expenses and number of patches to be
-sampled. Total survey expense time would be depended on surveying time
-spent in these high ranked patches and driving time between the patches.
-The driving time would be related to the distance between centroids of
-these patches, where patch survey time would be linearly scaled with
-the accumulated capacity in these high ranked patches, as high
-accumulated capacity suggest more sample traps should be deployed.
-In this example, i reserved 100 patches after remvoing tiny (<1km2) and low ranked( rear 55 patches) 
-to test the relationship between survey expense and survey time. 
-With this relationship, field manager could decide which/how many patches are going to be used for deploying samples, 
-given available time and resource. 
+This is an advanced approach which could help user to optimize survey route. 
+It works firstly by running the above procedure in an iterative manner to generate the relationship between survey expense and number of sampled patches. 
+Total survey expenses would be depend on surveying expense spent in these high ranked patches and driving time between the patches. 
+The driving time would be closely related to the distance between the centroids of these patches. 
+Patch survey expense would be scaled with the accumulated capacity index (CI) in these high ranked patches, as high CI accumulated means more sample should be deployed. 
+
+In this example, I select 100 patches after removing tiny (< 1km2) and low ranked (rear 55 patches) to test the relationship between survey expense and number of sampled patches. With this relationship, field biologist could decide which/how many patches are going to be used for deploying samples, given available time and resources.
+
+User inputs
+Occurrence data (occ):
+an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions.
+Suitability prediction (sdm):
+a raster surface representing suitability prediction, that could be attained using ecological niche model.
+Patch size limit (p):
+minimum patch size that should be considered in the surveying.
+Capacity index limit (r):
+capacity index used to discard low suitability patches.
+number of patches to be iterative removed (u).
+
 ``` r
 ### read system file data ###
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
