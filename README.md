@@ -56,7 +56,7 @@ rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 #rc <- thd(sdm = r, points = occ, type = "mtp", binary = TRUE)
 #rc <- thd(sdm = r, points = occ, type = "p10", binary = TRUE)
 
-#### Prioritizing patches by removing tiny pieces (<5km2) ####
+#### Ranking and prioritizing patches by removing tiny pieces (<5km2) ####
 pp<-rankCI(rc, p=5)
 
 ### These are patches that were reserved after 1th round optimization. 
