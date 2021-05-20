@@ -42,9 +42,13 @@ The binary predictive surface is then transformed into polygons/patches.
 Two procedures are employed to prioritize these patches, by removing tiny patches (here < 5km2) and discarding low capacity index (CI) ranked patches (here, 10 CI rear patches).
 
 User inputs data
+
 Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions.
+
 Suitability prediction (sdm): a raster surface representing suitability prediction, that could be attained using ecological niche model.
+
 Patch size limit (p): minimum patch size that should be considered in the surveying.
+
 Capacity index limit (r): capacity index used to discard low suitability patches.
 
 ``` r
@@ -153,14 +157,15 @@ Patch survey expense would be scaled with the accumulated capacity index (CI) in
 In this example, I select 100 patches after removing tiny (< 1km2) and low ranked (rear 55 patches) to test the relationship between survey expense and number of sampled patches. With this relationship, field biologist could decide which/how many patches are going to be used for deploying samples, given available time and resources.
 
 User inputs
-Occurrence data (occ):
-an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions.
-Suitability prediction (sdm):
-a raster surface representing suitability prediction, that could be attained using ecological niche model.
-Patch size limit (p):
-minimum patch size that should be considered in the surveying.
-Capacity index limit (r):
-capacity index used to discard low suitability patches.
+
+Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions.
+
+Suitability prediction (sdm): a raster surface representing suitability prediction, that could be attained using ecological niche model.
+
+Patch size limit (p): minimum patch size that should be considered in the surveying.
+
+Capacity index limit (r): capacity index used to discard low suitability patches.
+
 number of patches to be iterative removed (u).
 
 ``` r
