@@ -151,6 +151,11 @@ sum(mm$distance)
 xy<-st_coordinates(ct)
 leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
 
+### You may write out below result as html widget ###
+### library(htmlwidgets)
+### ggg<-leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
+### saveWidget(ggg, file = "enm_RouteMap.html")
+
 ```
 
 <img src="man/figures/README-example1-1.png" width="100%" />
