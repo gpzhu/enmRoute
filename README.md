@@ -6,14 +6,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The idea of this package is to us ecological niche model prediction for
-optimizing biodiversity survey route.
+The aim of this package is to use ecological niche model prediction to optimize biodiversity survey in an expected areas.
 
-Our purpose is to capture more individuals using our ecological niche
-model based survey route.
+The goal of the package is to capture more individuals in field surveys by using our ecological niche model-based route tool.
 
-We hope our model based route could help filed manager to design
-samplinmg route for regional and national survey.
+We hope our model-based route could help field biologists design sampling routes for regional and national surveys.
 
 ## Installation
 
