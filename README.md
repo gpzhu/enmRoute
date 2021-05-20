@@ -154,13 +154,16 @@ sum(mm$distance)
 ### You may write out survey route ###
 ### st_write(mytrip, "Mytrip.shp")
 
-### Plot the trip ###
+###########################################################
+### Plot and plan the trip ###
+### Solid red line denote proposed survey route,
+### Blue and red area mean patches that were reserved after 1th and 2th round prioritizations, dropped pins denote centroids of high ranked patches
 xy<-st_coordinates(ct)
-leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
+ggg<-leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
+ggg
 
 ### You may write out below result as html widget ###
 ### library(htmlwidgets)
-### ggg<-leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
 ### saveWidget(ggg, file = "enm_RouteMap.html")
 
 ```
