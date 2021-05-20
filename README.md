@@ -127,7 +127,7 @@ head(ct)
 ### You may write out survey centroid ###
 ### st_write(ct, "My_centroid.shp")
 
-##############################################################################################
+###########################################################################################
 ### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed ###
 ### during 1th (p) and 2th (r) rounds prioritization ###
 ### ready runing enmRoute and prepare for ploting ###
