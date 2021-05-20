@@ -236,7 +236,7 @@ head(cc)
 #> 6                  0.70     2090.385         1304.414              9693656        14194
 
 ### You may write out iterative running result ###
-### write.csv(cc, "Iteration_result.csv")
+### write.csv(cc, "Iteration_result.csv", row.names = F)
 
 ###plot tuneSite results###
 eee<-ggplot(cc, aes(x=Proportion_of_patches, y=Driving_time)) +
