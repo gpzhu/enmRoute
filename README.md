@@ -56,7 +56,9 @@ rc <- thd(sdm = r, threshold = 388, binary = TRUE)
 #rc <- thd(sdm = r, points = occ, type = "mtp", binary = TRUE)
 #rc <- thd(sdm = r, points = occ, type = "p10", binary = TRUE)
 
-#### Ranking and prioritizing patches by removing tiny pieces (<5km2) ####
+###########################################################################################
+#### The 1th round prioritization ###
+#### Ranking and prioritizing patches by removing tiny pieces (< 5km2) ####
 pp<-rankCI(rc, p=5)
 
 ### These are patches that were reserved after 1th round optimization. 
@@ -77,8 +79,12 @@ head(pp)
 #> 11  1 POLYGON ((-122.056 48.14649...  59964.98  108.99998   14
 #> 12  1 POLYGON ((-121.9347 48.2251...  32295.99   60.99999    1
 
-#### Select high ranked/priority patches by removing the rear 10 CI ranked patches ####
-sub<-subset(pp,Rank > 10)
+###########################################################################################
+#### The 2th round prioritization ###
+#### There are 31 paches were reserved after 1th round prioritization,
+#### With this number, user can decide how many patches are going to be discarded ######
+#### Here, select high ranked/priority patches by discarding the rear 10 CI ranked patches ####
+sub<-subset(pp, Rank > 10)
 
 ### These are patches that were reserved after 2th round optimization.
 dim(sub)
@@ -118,11 +124,17 @@ head(ct)
 #> 14  1 POINT (-121.7411 48.28298) 289664.94  445.00000   25
 #> 18  1 POINT (-122.2592 48.37726)  61520.99  101.00000   15
 
+### You may write out survey centroid ###
+### st_write(ct, "My_centroid.shp")
+
+##############################################################################################
+### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed ###
+### during 1th (p) and 2th (r) rounds prioritization ###
 ### ready runing enmRoute and prepare for ploting ###
-mm<-enmRoute(pred=rc,p=5,r=10) 
+
+mm<-enmRoute(pred=rc, p=5, r=10) 
 
 mytrip<-mm$geometry
-xy<-st_coordinates(ct)
 
 #### get survey driving time (min) ####
 sum(mm$duration)
@@ -132,7 +144,11 @@ sum(mm$duration)
 sum(mm$distance)
 #> [1] 591.5469
 
+### You may write out survey route ###
+### st_write(mytrip, "Mytrip.shp")
+
 ### Plot the trip ###
+xy<-st_coordinates(ct)
 leaflet()%>%addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%addMarkers(data=xy)%>%addTiles()%>%addRasterImage(rc, colors = "blue", opacity = 0.8)%>%addPolygons(data=sub,fillOpacity=0.5,color="red",stroke=T)
 
 ```
@@ -203,6 +219,9 @@ head(cc)
 #> 4                  0.80     2373.473         1394.338              9837947        14443
 #> 5                  0.75     2272.915         1362.348              9768400        14324
 #> 6                  0.70     2090.385         1304.414              9693656        14194
+
+### You may write out iterative running result ###
+### write.csv(cc, "Iteration_result.csv")
 
 ###plot tuneSite results###
 eee<-ggplot(cc, aes(x=Proportion_of_patches, y=Driving_time)) +
