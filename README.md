@@ -79,6 +79,9 @@ head(pp)
 #> 11  1 POLYGON ((-122.056 48.14649...  59964.98  108.99998   14
 #> 12  1 POLYGON ((-121.9347 48.2251...  32295.99   60.99999    1
 
+### You may write out polygon of 1th round prioritization ###
+### st_write(pp, "1th_polygon.shp")
+
 ###########################################################################################
 #### The 2th round prioritization ###
 #### There are 31 paches were reserved after 1th round prioritization,
@@ -123,6 +126,9 @@ head(ct)
 #> 13  1 POINT (-122.0441 48.26703) 167291.97  271.00000   23
 #> 14  1 POINT (-121.7411 48.28298) 289664.94  445.00000   25
 #> 18  1 POINT (-122.2592 48.37726)  61520.99  101.00000   15
+
+### You may write out polygon of 2th round prioritization ###
+### st_write(sub, "2th_polygon.shp")
 
 ### You may write out survey centroid ###
 ### st_write(ct, "My_centroid.shp")
