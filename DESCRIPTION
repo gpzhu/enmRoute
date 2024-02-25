@@ -1,0 +1,19 @@
+Package: enmRoute
+Type: Package
+Title: Survey_route_optimization
+Version: 0.1.0
+Author: Gengping Zhu
+Maintainer: The package maintainer <gengpingzhu@gmail.com>
+Description: Ecological niche model predition for optimizaing biodiversity surveillence.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: sf, 
+         units, 
+         terra,
+         osrm,
+         smoothr, 
+         exactextractr 
+RoxygenNote: 7.3.1
+Depends: 
+    R (>= 2.10)
