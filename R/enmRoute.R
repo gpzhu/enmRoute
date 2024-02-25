@@ -30,7 +30,8 @@ enmRoute<-function(pred1, pred2, p, r, obs, b){
 
     ### set the trip ###
     ct<-st_centroid(sub)
-    trips <- osrmTrip(loc = ct, returnclass = "sf")
+    ctxy<-as.data.frame(st_coordinates(ct))
+    trips <- osrmTrip(loc = ctxy, returnclass = "sf")
     mytrip <- trips[[1]]$trip
 
     ####return
@@ -69,8 +70,9 @@ enmRoute<-function(pred1, pred2, p, r, obs, b){
     ######### set the trip #######################
     pm <-st_as_sf(pm)
     ct<-st_centroid(pm)
-    trips <- osrmTrip(loc = ct, returnclass = "sf")
-
+    ctxy<-as.data.frame(st_coordinates(ct))
+    trips <- osrmTrip(loc = ctxy, returnclass = "sf")
+    
     #### get the trip
     mytrip <- trips[[1]]$trip
 
