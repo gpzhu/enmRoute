@@ -209,8 +209,9 @@ head(ct)
 ### st_write(ct, "My_centroid.shp")
 
 #### You may use osrmTrip function (osrm package) to get the route here, makesure your coordinate system is WGS84 ######
-#trips <- osrmTrip(loc = ct)
-#mytrip <- trips[[1]]$trip
+## ctxy<-as.data.frame(st_coordinates(ct))
+## trips <- osrmTrip(loc = ctxy, returnclass = "sf")
+## mytrip <- trips[[1]]$trip
 
 ###########################################################################################
 ### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed,
