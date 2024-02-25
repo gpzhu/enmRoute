@@ -163,7 +163,7 @@ head(pp)
 #### There are 31 paches were reserved after 1th round prioritization,
 #### With this number, user can decide how many patches are going to be discarded ######
 #### Here, select high ranked/priority patches by discarding the rear 10 CI ranked patches ####
-sub<-subset(pp, Rank > 11)
+sub<-subset(pp, Rank > 23)
 
 ### These are patches that were reserved after 2th round optimization.
 dim(sub)
