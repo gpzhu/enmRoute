@@ -135,7 +135,7 @@ dim(can)
 ###########################################################################################
 #### The 1th round prioritization ###
 #### Ranking and prioritizing patches by removing tiny pieces (< 5km2), ####
-pp<-rankCI(pred1 = pred1, canD = can, p = 5)
+pp<-rankCI(pred1 = pred1, canD = can, p = 3)
 
 ### These are patches that were reserved after 1th round optimization. 
 dim(pp)
