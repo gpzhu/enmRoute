@@ -218,7 +218,7 @@ head(ct)
 ### during 1th (p) and 2th (r) rounds prioritizations,
 ### so, it is ready to run enmRoute 
 
-mm<-enmRoute(pred1 = pred1, pred2 = pred2, p = 5, r = 11, obs = occ, b = 5)  
+mm<-enmRoute(pred1 = pred1, pred2 = pred2, p = 3, r = 23, obs = occ, b = 1000)  
 
 ### loading results ###
 mytrip<-mm$geometry
