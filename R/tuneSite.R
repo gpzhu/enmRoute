@@ -35,7 +35,8 @@ tuneSite<-function(shp, r, u){
     d[i,5]<-sum(pmsb$Patch_size)
 
     ct<-st_centroid(pmsb)
-    trips <- osrmTrip(loc = ct, returnclass = "sf")
+    ctxy<-as.data.frame(st_coordinates(ct))
+    trips <- osrmTrip(loc = ctxy, returnclass = "sf")
     mytrip <- trips[[1]]$trip
     t[i,2]<-sum(mytrip$duration)
     d[i,2]<-sum(mytrip$distance)
