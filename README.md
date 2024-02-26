@@ -43,12 +43,9 @@ b: The buffering distance of these observations, the unit is meter.
 enmRoute integrate suitability predictions and observatroins to optimize invasive species survey, it can work under different conditions, 
 we illustrate these in detail below.
 
-1)  Exercise 1 is a basic excise that guides the user step by step to generate
-    survey route, it demonstrates the inventory scheme for an invasive
-    specise that has not been established population (Spotted Latternfly), and an invasive species that has been
-    established population at earlier stage (Northern giant hornet), both examples were provided for theri current 
-    surveys planning in Washington State in United States. The former one does not account for introduced observation 
-    (distributional records) for survey route designning, whereas the latter included earlier detection in survey route designning. 
+1)  This Exercise 1 guides user step by step to generate survey route, it demonstrates the inventory scheme for an invasive species that has been
+    established population at earlier stage (Northern giant hornet), this example uses both observations and habitat suitability to generate candidate
+    survey patches, the exercies provides surveys route/scheme for Northern giant hornet detection in Washington State in United States.
 
 2)  Exercise 2 is demostrating the idea of survey route ptimization, i.e, how to optimize driving survey route for invasive species surveying. 
 
