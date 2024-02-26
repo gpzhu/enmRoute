@@ -25,15 +25,15 @@ The core function of enmRoute is to generate and optimize survey route for invas
 
 enmRoute (pred1, pred2, p, r, obs, b)
 
-pred1: Suitability prediction from ecological niche model, input as raster data
+pred1: Suitability prediction from an ecological niche model, input as raster from terra package, the habitat suitability ranging 0-1000, 
 
-pred2: Binary prediction from ecological niche model, input as raster data
+pred2: Binary prediction from ecological niche model, input as raster also from terra package
 
 p: Size of tiny patches to be discard (km2)
 
 r: Number of low ranked patches to be discard, they are ranked by Carrying Capacity Index (CCI).
 
-obs: Observations of introduced populations, input as csv of longitude and latitude.
+obs: Observations of introduced populations, input as csv with two colum of longitude and latitude.
 
 b: The buffering distance of these observations, the unit is meter.
 
