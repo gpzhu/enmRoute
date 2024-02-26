@@ -118,7 +118,8 @@ pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
 buf<- buf(obs = occ, b = 1000)
 
-## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and the bufferrring of introduced distributional records 
+## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and
+## the bufferrring of introduced distributional records 
 ## pred2: binary prediction
 ## obs: observed introduced distributional records
 ## b: the buffering distance of observed recrods, unit is meter.
