@@ -152,7 +152,7 @@ head(pp)
 # 151     190     1    23033 POLYGON ((-121.9839 48.8972...         37    4
 
 ### You may write out polygon of 1th round prioritization ###
-### st_write(pp, "1th_polygon.shp")
+st_write(pp, "1th_polygon.shp")
 
 ###########################################################################################
 #### The 2th round prioritization ###
@@ -200,18 +200,19 @@ head(ct)
 # 235     285     1   591013 POINT (-122.3689 48.83717)        910   49
 
 ### You may write out polygon of 2th round prioritization ###
-### st_write(sub, "2th_polygon.shp")
+st_write(sub, "2th_polygon.shp")
 
-### You may write out survey centroid ###
-### st_write(ct, "My_centroid.shp")
+### You may write out the survey centroids ###
+st_write(ct, "My_centroid.shp")
 
 #### You may use osrmTrip function (osrm package) to get the route here, makesure your coordinate system is WGS84 ######
-## ctxy<-as.data.frame(st_coordinates(ct))
-## trips <- osrmTrip(loc = ctxy, returnclass = "sf")
-## mytrip <- trips[[1]]$trip
+ctxy<-as.data.frame(st_coordinates(ct))
+trips <- osrmTrip(loc = ctxy, returnclass = "sf")
+mytrip <- trips[[1]]$trip
 
 ### You may write out survey centroid ###
-## st_write(mytrip, "My_trip.shp")
+st_write(mytrip, "My_trip.shp")
+
 ###########################################################################################
 ### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed,
 ### during 1th (p) and 2th (r) rounds prioritizations,
