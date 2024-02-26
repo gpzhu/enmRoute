@@ -103,13 +103,13 @@ occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
 pred1 <-rast(system.file("extdata", "WA.tif", package="enmRoute"))
 
 ################################## Note #####################################
-#### Currently, we us WGS 84, you may change coordinate system into equal area projection for below runing of optimization
+#### Currently, we us WGS 84, you may change coordinate system into equal area projection for below runing of optimization,
 #### But you have to thange it back to WGS84 below before get the route  ####
 
 #### Threshold model prediction at the 10th training threshold, this threhold is highly conservative in estimating distribution ####
 pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
-## Alternatively, you can use other thresholds (e.g., mtp) to get binary prediction, see detail in thd function
+## Alternatively, you can use other thresholds (e.g., mtp) to get binary prediction, see detail in thd function.
 ## rc <- thd(pred1 = pred1, points = occ, type = "mtp", binary = TRUE)
 ## User may also chouse an arbitary threshold that between 0-1000, see discussion on threshold in survey route optimization. 
 ## rc <- thd(pred1 = pred1, threshold = 388, binary = TRUE)
@@ -119,9 +119,9 @@ pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 buf<- buf(obs = occ, b = 1000)
 
 ## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and
-## the bufferrring of introduced distributional records 
-## pred2: binary prediction
-## obs: observed introduced distributional records
+## the bufferrring of introduced distributional records. 
+## pred2: binary prediction.
+## obs: observed introduced distributional records.
 ## b: the buffering distance of observed recrods, unit is meter.
 can<-canD(pred2 = pred2, obs = occ, b = 1000)
 
