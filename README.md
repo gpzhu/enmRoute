@@ -9,12 +9,13 @@
 Functions of this package were also provided in Shiny platform at
 <https://enmapp.shinyapps.io/enmroute>.
 
-The aim of this package is to use ecological niche model prediction to
-optimize biodiversity survey in an expected area. The goal of the
-package is to capture more individuals in field surveys by using our
-ecological niche model-based tool. We hope our model-based route
-could help field biologists design sampling routes for regional and
-national surveys.
+The aim of this package is to use ecological niche model habitat suitability 
+predictions to plan field survey in an expected area. Our platform would assist biodiversity survey 
+to capture more individuals in the field. We hypothesize that field surveys that account for habitat 
+suitability predictions would promote field collections. Our model-based survey route that acocunt for habitat 
+suiability predictions and use practiceable driving time/distance to optimize survey efforts, 
+we hope that this package and its accompany shinny could help field biologists design sampling
+routes for regional and national surveys.
 
 Key Words: Survey route, Optimization, Ecological Niche Model, Habitat suitability, Carrying Capactiy Index (CCI)
 
