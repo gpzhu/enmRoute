@@ -306,40 +306,40 @@ dim(pp)
 #> [1] 53  6
 
 head(pp)
-$ Simple feature collection with 6 features and 5 fields
-$ Geometry type: POLYGON
-$ Dimension:     XY
-$ Bounding box:  xmin: -123.0657 ymin: 48.77265 xmax: -121.9609 ymax: 49.00214
-$ Geodetic CRS:  WGS 84
-$     patches agg_n Capacity                       geometry Patch_size Rank
-$ 4         3    13  2008458 POLYGON ((-122.5707 48.9988...       2586   53
-$ 10       11     1   935502 POLYGON ((-122.2461 48.9365...       1382   51
-$ 22       25     1    35881 POLYGON ((-123.0297 48.9923...         47   23
-$ 36       41     1   201247 POLYGON ((-122.3969 48.9464...        265   46
-$ 71       85     1    53844 POLYGON ((-122.8034 48.9431...         71   34
-$ 151     190     1    23033 POLYGON ((-121.9839 48.8972...         37    4
+# Simple feature collection with 6 features and 5 fields
+# Geometry type: POLYGON
+# Dimension:     XY
+# Bounding box:  xmin: -123.0657 ymin: 48.77265 xmax: -121.9609 ymax: 49.00214
+# Geodetic CRS:  WGS 84
+#     patches agg_n Capacity                       geometry Patch_size Rank
+# 4         3    13  2008458 POLYGON ((-122.5707 48.9988...       2586   53
+# 10       11     1   935502 POLYGON ((-122.2461 48.9365...       1382   51
+# 22       25     1    35881 POLYGON ((-123.0297 48.9923...         47   23
+# 36       41     1   201247 POLYGON ((-122.3969 48.9464...        265   46
+# 71       85     1    53844 POLYGON ((-122.8034 48.9431...         71   34
+# 151     190     1    23033 POLYGON ((-121.9839 48.8972...         37    4
 
 ###### Tune candidate sites for routing ##########
 ###### shp is the output of rankCI ###
 ###### r, number of low ranked patches to be removed ###
 ###### u, number of patches to be iterative removed ### 
-cc<-tuneSite(shp=pp, r=23, u=2)
+cc<-tuneSite(shp=pp, r=23, u=1)
 
 ### These are patches that were reserved after 2th round optimization.
 dim(cc)
-#> [1] 36  5
+#> [1] 21  5
 
 head(cc)
 #  Proportion_of_patches Driving_time Driving_distance Accumulated_capacity Patch_size
-# 1                  0.75     2272.603         1329.218              9586223   14462.26
-# 2                  0.73     2141.305         1306.871              9552603   14404.26
-# 3                  0.71     2118.675         1300.781              9517536   14347.26
-# 4                  0.69     2076.035         1269.831              9481516   14291.26
-# 5                  0.67     2047.105         1262.647              9443733   14234.26
-# 6                  0.65     2043.175         1259.780              9401148   14167.26
+# 1                  0.25     863.4050         669.7189              8532732      12335
+# 2                  0.24     836.9117         653.3762              8486656      12269
+# 3                  0.23     780.8533         641.3595              8440438      12188
+# 4                  0.22     771.5617         633.7593              8392899      12113
+# 5                  0.21     746.2750         617.4958              8344744      12039
+# 6                  0.20     733.3150         621.9432              8293431      11952
 
 ### You may write out iterative running result ###
-### write.csv(cc, "Iteration_result.csv", row.names = F)
+write.csv(cc, "Iteration_result.csv", row.names = F)
 
 ###plot tuneSite results###
 ### Relation between survey time/distance and proportion of patches to be sampled
