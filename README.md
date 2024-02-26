@@ -82,7 +82,7 @@ surface is then transformed into polygons/patches, they were then combined
 with the buffering of introduced distributional records to generate candidate suvery patches.  
 
 Two procedures are employed below to prioritize these patches, by removing tiny patches (here \<
-5km2) and discarding low carrying capacity index (CCI) ranked patches (here, 10 CCI
+3km2) and discarding low carrying capacity index (CCI) ranked patches (here, 23 CCI
 rear patches).
 
 User inputs data: Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary
@@ -111,7 +111,7 @@ pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
 ## Alternatively, you can use other thresholds (e.g., mtp) to get binary prediction, see detail in thd function.
 ## rc <- thd(pred1 = pred1, points = occ, type = "mtp", binary = TRUE)
-## User may also chouse an arbitary threshold that between 0-1000, see discussion on threshold in survey route optimization. 
+## User may also chouse an arbitary threshold (here 388) that between 0-1000, see discussion on threshold in survey route optimization. 
 ## rc <- thd(pred1 = pred1, threshold = 388, binary = TRUE)
 
 # Get the buffering of introducted distributional records, the buffering distance unit is meter.
@@ -126,77 +126,78 @@ buf<- buf(obs = occ, b = 1000)
 can<-canD(pred2 = pred2, obs = occ, b = 1000)
 
 dim(can)
-# [1] 2566    3
-# There are 2544 pateches generated, this is too much for regular survey, we employ below 2 steps to optimize survey route. 
+# [1] 2517    4
+# There are 2517 pateches generated, this is too much for regular survey, we employ below 2 steps to optimize survey route. 
 ###########################################################################################
 #### The 1th round prioritization ###
-#### Ranking and prioritizing patches by removing tiny pieces (< 5km2), ####
+#### Ranking and prioritizing patches by removing tiny pieces (< 3km2), ####
 pp<-rankCI(pred1 = pred1, canD = can, p = 3)
 
 ### These are patches that were reserved after 1th round optimization. 
 dim(pp)
-#> [1] 41  5
+#> [1] 63  6
 
 head(pp)
-# Simple feature collection with 6 features and 4 fields
+# Simple feature collection with 6 features and 5 fields
 # Geometry type: POLYGON
 # Dimension:     XY
-# Bounding box:  xmin: -122.8133 ymin: 48.47432 xmax: -122.2658 ymax: 49.03811
-# CRS:           +proj=longlat +datum=WGS84 +no_defs
-#   Capacity WA                       geometry Patch_size Rank
-# 1   2155404 NA POLYGON ((-122.61 48.85461,...   3271.264   41
-# 3     78328  1 POLYGON ((-122.6625 48.7988...    120.000   19
-# 7     89752  1 POLYGON ((-122.5936 48.8283...    141.000   21
-# 8    474770  1 POLYGON ((-122.4789 48.8283...    740.000   37
-# 10    90523  1 POLYGON ((-122.4723 48.5038...    148.000   22
-# 12   201247  1 POLYGON ((-122.4232 48.9332...    265.000   29
+# Bounding box:  xmin: -123.0657 ymin: 48.77265 xmax: -121.9609 ymax: 49.00214
+# Geodetic CRS:  WGS 84
+#     patches agg_n Capacity                       geometry Patch_size Rank
+# 4         3    13  2008458 POLYGON ((-122.5707 48.9988...       2586   53
+# 10       11     1   935502 POLYGON ((-122.2461 48.9365...       1382   51
+# 22       25     1    35881 POLYGON ((-123.0297 48.9923...         47   23
+# 36       41     1   201247 POLYGON ((-122.3969 48.9464...        265   46
+# 71       85     1    53844 POLYGON ((-122.8034 48.9431...         71   34
+# 151     190     1    23033 POLYGON ((-121.9839 48.8972...         37    4
 
 ### You may write out polygon of 1th round prioritization ###
 ### st_write(pp, "1th_polygon.shp")
 
 ###########################################################################################
 #### The 2th round prioritization ###
-#### There are 31 paches were reserved after 1th round prioritization,
+#### There are 53 paches were reserved after 1th round prioritization,
 #### With this number, user can decide how many patches are going to be discarded ######
-#### Here, select high ranked/priority patches by discarding the rear 10 CI ranked patches ####
+#### Here, select high ranked/priority patches by discarding the rear 23 CI ranked patches ####
 sub<-subset(pp, Rank > 23)
 
 ### These are patches that were reserved after 2th round optimization.
 dim(sub)
-#> [1] 30  5
+#> [1] 30  6
 
 head(sub)
-# Simple feature collection with 6 features and 4 fields
+# Simple feature collection with 6 features and 5 fields
 # Geometry type: POLYGON
 # Dimension:     XY
-# Bounding box:  xmin: -122.8133 ymin: 48.47432 xmax: -122.2658 ymax: 49.03811
-# CRS:           +proj=longlat +datum=WGS84 +no_defs
-#   Capacity WA                       geometry Patch_size Rank
-# 1   2155404 NA POLYGON ((-122.61 48.85461,...   3271.264   41
-# 3     78328  1 POLYGON ((-122.6625 48.7988...    120.000   19
-# 7     89752  1 POLYGON ((-122.5936 48.8283...    141.000   21
-# 8    474770  1 POLYGON ((-122.4789 48.8283...    740.000   37
-# 10    90523  1 POLYGON ((-122.4723 48.5038...    148.000   22
-# 12   201247  1 POLYGON ((-122.4232 48.9332...    265.000   29
+# Bounding box:  xmin: -122.8133 ymin: 48.77265 xmax: -122.0003 ymax: 49.00214
+# Geodetic CRS:  WGS 84
+#     patches agg_n Capacity                       geometry Patch_size Rank
+# 4         3    13  2008458 POLYGON ((-122.5707 48.9988...       2586   53
+# 10       11     1   935502 POLYGON ((-122.2461 48.9365...       1382   51
+# 36       41     1   201247 POLYGON ((-122.3969 48.9464...        265   46
+# 71       85     1    53844 POLYGON ((-122.8034 48.9431...         71   34
+# 157     198     1    47539 POLYGON ((-122.4428 48.9169...         75   31
+# 235     285     1   591013 POLYGON ((-122.4363 48.8742...        910   49
+
 ### Get centroid for generating survey route ####
 ct<-st_centroid(sub)
 
 dim(ct)
-#> [1] 30  5
+#> [1] 30  6
 
 head(ct)
-# Simple feature collection with 6 features and 4 fields
+# Simple feature collection with 6 features and 5 fields
 # Geometry type: POINT
 # Dimension:     XY
-# Bounding box:  xmin: -122.6527 ymin: 48.4947 xmax: -122.3668 ymax: 48.94929
-# CRS:           +proj=longlat +datum=WGS84 +no_defs
-#   Capacity WA                   geometry Patch_size Rank
-# 1   2155404 NA POINT (-122.6527 48.93404)   3271.264   41
-# 3     78328  1 POINT (-122.6342 48.79342)    120.000   19
-# 7     89752  1 POINT (-122.5409 48.81919)    141.000   21
-# 8    474770  1  POINT (-122.3749 48.8474)    740.000   37
-# 10    90523  1  POINT (-122.4446 48.4947)    148.000   22
-# 12   201247  1 POINT (-122.3668 48.94929)    265.000   29
+# Bounding box:  xmin: -122.7835 ymin: 48.83717 xmax: -122.1474 ymax: 48.9534
+# Geodetic CRS:  WGS 84
+#     patches agg_n Capacity                   geometry Patch_size Rank
+# 4         3    13  2008458  POINT (-122.6434 48.9199)       2586   53
+# 10       11     1   935502 POINT (-122.1474 48.93689)       1382   51
+# 36       41     1   201247 POINT (-122.3668 48.94929)        265   46
+# 71       85     1    53844  POINT (-122.7835 48.9534)         71   34
+# 157     198     1    47539 POINT (-122.4444 48.90569)         75   31
+# 235     285     1   591013 POINT (-122.3689 48.83717)        910   49
 
 ### You may write out polygon of 2th round prioritization ###
 ### st_write(sub, "2th_polygon.shp")
@@ -209,6 +210,8 @@ head(ct)
 ## trips <- osrmTrip(loc = ctxy, returnclass = "sf")
 ## mytrip <- trips[[1]]$trip
 
+### You may write out survey centroid ###
+## st_write(mytrip, "My_trip.shp")
 ###########################################################################################
 ### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed,
 ### during 1th (p) and 2th (r) rounds prioritizations,
