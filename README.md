@@ -259,19 +259,19 @@ saveWidget(ggg, file = "enm_RouteMap.html")
 ## Exercise 2
 
 This is an advanced exercise which could help user to optimize survey
-route. It works firstly by running the above procedure in an iterative
+route. It works by running the above procedure in an iterative
 manner to generate the relationship between survey expense and number of
-sampled patches. Total survey expenses would be depend on surveying
+patches that plan to survey. Total survey expenses would depend on surveying
 expense spent in these high ranked patches and driving time between the
-patches. The driving time would be closely related to the distance
-between the centroids of these patches. Patch survey expense would be
-scaled with the accumulated capacity index (CI) in these high ranked
+patches. The driving time (i.e., minute)/distance (i.e., kilometer)  would be 
+closely correlated with the distance between the centroids of these patches. 
+Patch survey expense would be scaled with the accumulated capacity index (CI) in these high ranked
 patches, as high CI accumulated means more sample should be deployed.
 
 Ts = td + β * CCIs
 
-In this example, I select 100 patches after removing tiny (\< 1km2) and
-low ranked (rear 55 patches) to test the relationship between survey
+In this example, I select 30 patches after removing tiny (\< 3 km2) and
+low ranked (rear 23 patches) to test the relationship between survey
 expense and number of sampled patches. With this relationship, field
 biologist could decide which/how many patches are going to be used for
 deploying samples, given available time and resources.
