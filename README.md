@@ -210,7 +210,7 @@ ctxy<-as.data.frame(st_coordinates(ct))
 trips <- osrmTrip(loc = ctxy, returnclass = "sf")
 mytrip <- trips[[1]]$trip
 
-### You may write out survey centroid ###
+### You may write out the survey route ###
 st_write(mytrip, "My_trip.shp")
 
 ###########################################################################################
