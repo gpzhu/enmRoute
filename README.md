@@ -110,16 +110,15 @@ pred1 <-rast(system.file("extdata", "WA.tif", package="enmRoute"))
 pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
 ## Alternatively, you can use other thresholds (e.g., mtp) to get binary prediction, see detail in thd function
-#rc <- thd(pred1 = pred1, points = occ, type = "mtp", binary = TRUE)
+## rc <- thd(pred1 = pred1, points = occ, type = "mtp", binary = TRUE)
 ## User may also chouse an arbitary threshold that between 0-1000, see discussion on threshold in survey route optimization. 
-#rc <- thd(pred1 = pred1, threshold = 388, binary = TRUE)
+## rc <- thd(pred1 = pred1, threshold = 388, binary = TRUE)
 
 # Get the buffering of introducted distributional records, the buffering distance unit is meter.
 
 buf<- buf(obs = occ, b = 1000)
 
-## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and 
-## the bufferrring of introduced distributional records 
+## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and the bufferrring of introduced distributional records 
 ## pred2: binary prediction
 ## obs: observed introduced distributional records
 ## b: the buffering distance of observed recrods, unit is meter.
