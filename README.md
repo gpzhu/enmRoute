@@ -225,11 +225,11 @@ mytrip<-mm$geometry
 
 #### get survey driving time (min) ####
 sum(mm$duration)
-#> [1] 953.3417
+#> [1] 1021.515
 
 #### get survey driving distance (km) ####
 sum(mm$distance)
-#> [1] 715.6079
+#> [1] 787.8568
 
 ### You may write out survey route ###
 ### st_write(mytrip, "Mytrip.shp")
