@@ -43,11 +43,11 @@ b: The buffering distance of these observations, the unit is meter.
 enmRoute integrate suitability predictions and observatroins to optimize invasive species survey, it can work under different conditions, 
 we illustrate these in detail below.
 
-1)  This Exercise 1 guides user step by step to generate survey route, it demonstrates the inventory scheme for an invasive species that has been
-    established population at earlier stage (Northern giant hornet), this example uses both observations and habitat suitability to generate candidate
+1)  This Exercise 1 guides user step by step to generate survey route, it demonstrates the inventory scheme for an invasive species (Northern giant hornet)
+    that has established population at the earlier stage, this example uses both introduced observations and habitat suitability predictions to generate candidate
     survey patches, the exercies provides surveys route/scheme for Northern giant hornet detection in Washington State in United States.
 
-2)  Exercise 2 is demostrating the idea of survey route ptimization, i.e, how to optimize driving survey route for invasive species surveying. 
+3)  Exercise 2 is demostrating the idea of survey route ptimization, i.e, how to optimize driving survey route for invasive species surveying. 
 
 ## Installation
 
@@ -75,7 +75,7 @@ library(ggpubr)
 
 ## Exercise 1
 
-This is a basic exercise which guides user step by step to generate
+This exercise guides user step by step to generate
 a survey route. The first step is to change the Ecological Niche Model
 suitability prediction into a binary prediction. The binary predictive
 surface is then transformed into polygons/patches, they were then combined 
@@ -85,15 +85,14 @@ Two procedures are employed below to prioritize these patches, by removing tiny 
 5km2) and discarding low carrying capacity index (CCI) ranked patches (here, 10 CCI
 rear patches).
 
-User inputs data: Occurrence data (occ): an occurrence data with two
-columns of longitude and latitude for converting suitability into binary
-predictions; Suitability prediction (pred1): a raster surface representing
+User inputs data: Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary
+predictions, and for generate the candidate survey patahces; Suitability prediction (pred1): a raster surface representing
 suitability prediction, that could be attained using ecological niche
 model; Binary prediction (pred2): a raster surface representing
 binary prediction (presence/absence), that could be attained by thresholding suitability prediction;
 Patch size limit (p): minimum patch size (km2) that should be
 considered in the survey; Carrying Capacity Index (CCI) limit (r): used to set the
-boundary for discarding low CCI ranked patches; Buffering distance (b): the buffering distance (km) 
+boundary for discarding low CCI ranked patches; Buffering distance (b): the buffering distance (meter) 
 of observed introduced records.
 
 ``` r
