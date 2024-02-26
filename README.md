@@ -290,40 +290,40 @@ iterative removed (u).
 ``` r
 ### read system file data ###
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
-pred1 <-raster(system.file("extdata", "WA.tif", package="enmRoute"))
+pred1 <-rast(system.file("extdata", "WA.tif", package="enmRoute"))
 
 #### Threshold model prediction ####
-pred2 <- thd(pred1 = pred1, threshold = 388, binary = TRUE)
+pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
 ## To start optimization, we will use candidate patches/polygons that generate from former excise. 
-can<-canD(pred2 = pred2, obs = occ, b = 5) #This would generate 2566 patches/polygons.
+can<-canD(pred2 = pred2, obs = occ, b = 1000) #This would generate 2517 patches/polygons.
 
-# We calculate CCI for these patches, and then rank them by CCI, we optimize firstly by remove some small size patches (<2 km2).
-pp<-rankCI(pred1 = pred1, canD = can, p = 2)
+# We calculate CCI for these patches, and then rank them by CCI, we optimize firstly by remove some small size patches (<3 km2).
+pp<-rankCI(pred1 = pred1, canD = can, p = 3)
 
 ### These are patches that were reserved after 1th round optimization.
 dim(pp)
-#> [1] 92  5
+#> [1] 53  6
 
 head(pp)
-# Simple feature collection with 6 features and 4 fields
-# Geometry type: POLYGON
-# Dimension:     XY
-# Bounding box:  xmin: -123.0657 ymin: 48.44482 xmax: -122.4822 ymax: 49.03811
-# CRS:           +proj=longlat +datum=WGS84 +no_defs
-#  Capacity WA                       geometry Patch_size Rank
-# 1  2155404 NA POLYGON ((-122.61 48.85461,...   3271.264   92
-# 2    35881  1 POLYGON ((-123.0624 48.9923...     47.000   52
-# 3    78328  1 POLYGON ((-122.6625 48.7988...    120.000   70
-# 4    24516  1 POLYGON ((-122.633 48.76937...     41.000   35
-# 5    36670  1 POLYGON ((-122.5904 48.4513...     50.000   53
-# 6    26200  1 POLYGON ((-122.5707 48.7956...     40.000   38
+$ Simple feature collection with 6 features and 5 fields
+$ Geometry type: POLYGON
+$ Dimension:     XY
+$ Bounding box:  xmin: -123.0657 ymin: 48.77265 xmax: -121.9609 ymax: 49.00214
+$ Geodetic CRS:  WGS 84
+$     patches agg_n Capacity                       geometry Patch_size Rank
+$ 4         3    13  2008458 POLYGON ((-122.5707 48.9988...       2586   53
+$ 10       11     1   935502 POLYGON ((-122.2461 48.9365...       1382   51
+$ 22       25     1    35881 POLYGON ((-123.0297 48.9923...         47   23
+$ 36       41     1   201247 POLYGON ((-122.3969 48.9464...        265   46
+$ 71       85     1    53844 POLYGON ((-122.8034 48.9431...         71   34
+$ 151     190     1    23033 POLYGON ((-121.9839 48.8972...         37    4
 
 ###### Tune candidate sites for routing ##########
 ###### shp is the output of rankCI ###
 ###### r, number of low ranked patches to be removed ###
 ###### u, number of patches to be iterative removed ### 
-cc<-tuneSite(shp=pp, r=12, u=2)
+cc<-tuneSite(shp=pp, r=23, u=2)
 
 ### These are patches that were reserved after 2th round optimization.
 dim(cc)
