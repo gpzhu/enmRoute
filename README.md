@@ -11,7 +11,7 @@ Functions of this package were also provided in Shiny platform at
 
 The aim of this package is to use ecological niche model habitat suitability 
 predictions to plan field survey of invasive species in an expected area. Our platform would faciliate 
-earlier detection and eradications programs for invasive species management. We hypothesize that field surveys that account for habitat 
+earlier detection and eradications programs in invasive species management. We hypothesize that field surveys that account for habitat 
 suitability predictions would promote field collections and capture more individuals in the field. 
 Our model-based survey route that acocunt for habitat suiability predictions and use practiceable driving time/distance to optimize survey efforts, 
 we hope that this package and its accompany shinny could help field biologists design sampling routes for regional and national surveys.
