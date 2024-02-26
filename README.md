@@ -120,8 +120,8 @@ buf<- buf(obs = occ, b = 1000)
 
 ## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and
 ## the bufferrring of introduced distributional records. 
-## pred2: binary prediction.
-## obs: observed introduced distributional records.
+## pred2: binary prediction, rast object.
+## obs: observed introduced distributional records, with two colum of longitude and latitude.
 ## b: the buffering distance of observed recrods, unit is meter.
 can<-canD(pred2 = pred2, obs = occ, b = 1000)
 
