@@ -85,15 +85,21 @@ Two procedures are employed below to prioritize these patches, by removing tiny 
 3km2) and discarding low carrying capacity index (CCI) ranked patches (here, 23 CCI
 rear patches).
 
-User inputs data: Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary
-predictions, and for generate the candidate survey patahces; Suitability prediction (pred1): a raster surface representing
-suitability prediction, that could be attained using ecological niche
-model; Binary prediction (pred2): a raster surface representing
-binary prediction (presence/absence), that could be attained by thresholding suitability prediction;
-Patch size limit (p): minimum patch size (km2) that should be
-considered in the survey; Carrying Capacity Index (CCI) limit (r): used to set the
-boundary for discarding low CCI ranked patches; Buffering distance (b): the buffering distance (meter) 
-of observed introduced records.
+User inputs data: 
+
+Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary
+predictions, and for generating the candidate survey patahces.
+
+Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using ecological niche
+model.
+
+Binary prediction (pred2): a raster surface representing binary prediction (presence/absence), that could be attained by thresholding suitability prediction.
+
+Patch size limit (p): minimum patch size (km2) that should be considered in the survey.
+
+Carrying Capacity Index (CCI) limit (r): used to set the boundary for discarding low CCI ranked patches.
+
+Buffering distance (b): the buffering distance (meter) of observed introduced records.
 
 ``` r
 
@@ -277,6 +283,7 @@ biologist could decide which/how many patches are going to be used for
 deploying samples, given available time and resources.
 
 User inputs: 
+
 Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions. 
 
 Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using ecological niche model. 
