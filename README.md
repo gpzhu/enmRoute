@@ -250,8 +250,8 @@ ggg<-leaflet()%>%
 ggg
 
 ### You may write out below result as html widget ###
-### library(htmlwidgets)
-### saveWidget(ggg, file = "enm_RouteMap.html")
+library(htmlwidgets)
+saveWidget(ggg, file = "enm_RouteMap.html")
 ```
 
 <img src="man/figures/README-example1-1.png" width="100%" />
