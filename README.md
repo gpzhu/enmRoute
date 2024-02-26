@@ -284,7 +284,8 @@ deploying samples, given available time and resources.
 
 User inputs: 
 
-Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions. 
+Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions,
+and for generating the candidate survey patahces.
 
 Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using ecological niche model. 
 
