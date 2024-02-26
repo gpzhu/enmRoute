@@ -278,10 +278,15 @@ deploying samples, given available time and resources.
 
 User inputs: 
 Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions. 
+
 Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using ecological niche model. 
+
 Binary prediction (pred2): a raster surface representing binary prediction (presence/absence), that could be attained by thresholding suitability prediction.
+
 Patch size limit (p): minimum patch size that should be considered in the surveying.
+
 Capacity index limit (r): capacity index used to discard low suitability patches.
+
 Iterative number (u): Number of patches to be iterative removed (u).
 
 ``` r
