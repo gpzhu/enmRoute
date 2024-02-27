@@ -1,6 +1,7 @@
 # load rocker base-R image
-FROM rocker/r-ver:4.3.1
-
+# FROM rocker/r-ver:4.3.1
+FROM node:21-alpine
+WORKDIR /app
 # install specific versions of CRAN packages from MRAN snapshots
 RUN R -e 'install.packages("remotes")'
 RUN R -e 'remotes::install_version("BH", "1.84.0-0", dependencies = FALSE)'
@@ -31,4 +32,5 @@ COPY source_packages /source_packages
 
 # install 'enmRoute' package
 RUN R -e 'install.packages(pkgs = "source_packages/enmRoute_0.1.0.tar.gz", repos = NULL)'
+EXPOSE 3000
 
