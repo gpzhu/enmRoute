@@ -1,7 +1,0 @@
-node_modeules
-  dist
-  test
-  .dockerignore
-  Dockerfile
-  README.md
-  .env
