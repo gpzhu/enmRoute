@@ -32,6 +32,7 @@ COPY source_packages /source_packages
 
 # install 'enmRoute' package
 RUN R -e 'install.packages(pkgs = "source_packages/enmRoute_0.1.0.tar.gz", repos = NULL)'
-CMD ["start"]
 EXPOSE 3000
+CMD ["start"]
+
 
