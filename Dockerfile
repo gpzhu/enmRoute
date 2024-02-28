@@ -3,7 +3,6 @@ FROM rocker/r-ver:4.3.1
 
 # install specific versions of CRAN packages from MRAN snapshots
 RUN R -e 'install.packages("remotes")'
-RUN R -e 'remotes::install_version("BH", "1.84.0-0", dependencies = FALSE)'
 RUN R -e 'remotes::install_version("classInt", "0.4-10", dependencies = FALSE)'
 RUN R -e 'remotes::install_version("curl", "5.2.0", dependencies = FALSE)'
 RUN R -e 'remotes::install_version("DBI", "1.2.2", dependencies = FALSE)'
