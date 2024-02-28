@@ -6,9 +6,6 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Functions of this package were also provided in Shiny platform at
-<https://enmapp.shinyapps.io/enmroute>.
-
 The aim of this package is to use ecological niche model habitat suitability 
 predictions to plan field survey of invasive species in an expected area. Our platform would faciliate 
 earlier detection and eradications programs in invasive species management. We hypothesize that field surveys that account for habitat 
