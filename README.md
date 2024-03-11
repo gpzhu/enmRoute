@@ -138,7 +138,7 @@ pp<-rankCI(pred1 = pred1, canD = can, p = 3)
 
 ### These are patches that were reserved after 1th round optimization. 
 dim(pp)
-#> [1] 63  6
+#> [1] 53  6
 
 head(pp)
 # Simple feature collection with 6 features and 5 fields
