@@ -7,44 +7,44 @@
 <!-- badges: end -->
 
 The aim of this package is to use ecological niche model habitat suitability 
-predictions to plan field survey of invasive species in an expected area. Our platform would promote detection and faciliate 
+predictions to plan the field survey of invasive species in an expected area. Our platform would promote detection and faciliate 
 earlier eradications programs in invasive species management. We hypothesize that field surveys that account for habitat 
 suitability predictions could promote field collections and capture more individuals in the field. 
-Our model-based survey route that acocunt for habitat suiability predictions and use practiceable driving time/distance to optimize survey efforts, 
-we hope that this package and its accompany shinny could help field biologists design sampling routes for regional and national surveys.
+Our model-based survey route accounts for habitat suitability predictions and uses practicable driving time/distance to optimize survey efforts, 
+we hope that this package and its accompanying shiny will help field biologists design sampling routes for regional and national surveys.
 
 Key Words: Survey route, Optimization, Ecological Niche Model, Habitat suitability, Carrying Capactiy Index (CCI)
 
 
 ###########################################################################################
 
-The core function of enmRoute is to generate and optimize survey route for invasive species surveillence:
+The core function of enmRoute is to generate and optimize survey routes for invasive species surveillence:
 
 enmRoute (pred1, pred2, p, r, obs, b)
 
-pred1: Suitability prediction from an ecological niche model, input as raster from terra package, the habitat suitability ranging 0-1000, 
+pred1: Suitability prediction from an ecological niche model, input as a raster from the terra package, the habitat suitability ranging 0-1000, 
 
-pred2: Binary prediction from ecological niche model, input as raster also from terra package
+pred2: Binary prediction from ecological niche model, input as a raster also from the terra package
 
-p: Size of tiny patches to be discard (km2)
+p: Size of tiny patches to be discarded (km2)
 
-r: Number of low ranked patches to be discard, they are ranked by Carrying Capacity Index (CCI).
+r: Number of low ranked patches to be discarded, they are ranked by Carrying Capacity Index (CCI).
 
-obs: Observations of introduced populations, input as csv with two colum of longitude and latitude.
+obs: Observations of introduced populations, input as a csv with two colum of longitude and latitude.
 
 b: The buffering distance of these observations, the unit is meter.
 
 
 ###########################################################################################
 
-enmRoute integrate suitability predictions and observatroins to optimize invasive species survey, it can work under different conditions, 
+enmRoute integrates suitability predictions and observations to optimize invasive species surveys, it can work under different conditions, 
 we illustrate these in detail below.
 
-1)  This Exercise 1 guides user step by step to generate survey route, it demonstrates the inventory scheme for an invasive species (Northern giant hornet)
+1)  This Exercise 1 guides user step by step to generate a survey route, it demonstrates the inventory scheme for an invasive species (Northern giant hornet)
     that has established population at the earlier stage, this example uses both introduced observations and habitat suitability predictions to generate candidate
-    survey patches, the exercies provides surveys route/scheme for Northern giant hornet detection in Washington State in United States.
+    survey patches, the exercies provide a survey route/scheme for Northern giant hornet detection in Washington State in United States.
 
-3)  Exercise 2 is demostrating the idea of survey route ptimization, i.e, how to optimize driving survey route for invasive species surveying. 
+3)  Exercise 2 is demostrating the idea of survey route optimization, i.e, how to optimize the driving survey route for invasive species surveying. 
 
 ## Installation
 
@@ -72,10 +72,10 @@ library(ggpubr)
 
 ## Exercise 1
 
-This exercise guides user step by step to generate
+This exercise guides users step by step to generate
 a survey route. The first step is to change the Ecological Niche Model
 suitability prediction into a binary prediction. The binary predictive
-surface is then transformed into polygons/patches, they were then combined 
+surface is then transformed into polygons/patches, which were then combined 
 with the buffering of introduced distributional records to generate candidate suvery patches.  
 
 Two procedures are employed below to prioritize these patches, by removing tiny patches (here \<
@@ -84,13 +84,13 @@ rear patches).
 
 User inputs data: 
 
-Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary
+Occurrence data (occ): occurrence data with two columns of longitude and latitude for converting suitability into binary
 predictions, and for generating the candidate survey patahces.
 
-Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using ecological niche
+Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using an ecological niche
 model.
 
-Binary prediction (pred2): a raster surface representing binary prediction (presence/absence), that could be attained by thresholding suitability prediction.
+Binary prediction (pred2): a raster surface representing binary prediction (presence/absence), that could be attained by thresholding the suitability prediction.
 
 Patch size limit (p): minimum patch size (km2) that should be considered in the survey.
 
@@ -106,37 +106,37 @@ occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
 pred1 <-rast(system.file("extdata", "WA.tif", package="enmRoute"))
 
 ################################## Note #####################################
-#### Currently, we us WGS 84, you may change coordinate system into equal area projection for below runing of optimization,
-#### But you have to thange it back to WGS84 below before get the route  ####
+#### Currently, we use WGS84, you may change coordinate system into a different equal area projection for the below running of optimization,
+#### But you have to change it back to WGS84 below before get the route  ####
 
 #### Threshold model prediction at the 10th training threshold, this threhold is highly conservative in estimating distribution ####
 pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
 ## Alternatively, you can use other thresholds (e.g., mtp) to get binary prediction, see detail in thd function.
 ## rc <- thd(pred1 = pred1, points = occ, type = "mtp", binary = TRUE)
-## User may also chouse an arbitary threshold (here 388) that between 0-1000, see discussion on threshold in survey route optimization. 
+## User may also choose an arbitary threshold (here 388) that is between 0-1000, see discussion on threshold in survey route optimization. 
 ## rc <- thd(pred1 = pred1, threshold = 388, binary = TRUE)
 
 # Get the buffering of introducted distributional records, the buffering distance unit is meter.
 
 buf<- buf(obs = occ, b = 1000)
 
-## Preparing the candate polygons/pataches, candidate surveying patch/polygos from binary predictions and
-## the bufferrring of introduced distributional records. 
+## Preparing the candate polygons/patches, candidate surveying patch/polygons from binary predictions and
+## the buffering of introduced distributional records. 
 ## pred2: binary prediction, rast object.
-## obs: observed introduced distributional records, with two colum of longitude and latitude.
-## b: the buffering distance of observed recrods, unit is meter.
+## obs: observed introduced distributional records, with two column of longitude and latitude.
+## b: the buffering distance of observed records, unit is meter.
 can<-canD(pred2 = pred2, obs = occ, b = 1000)
 
 dim(can)
 # [1] 2517    4
-# There are 2517 pateches generated, this is too much for regular survey, we employ below 2 steps to optimize survey route. 
+# There are 2517 patches generated, this is too much for regular survey, we employ below 2 steps to optimize the survey route. 
 ###########################################################################################
-#### The 1th round prioritization ###
+#### The 1st round prioritization ###
 #### Ranking and prioritizing patches by removing tiny pieces (< 3km2), ####
 pp<-rankCI(pred1 = pred1, canD = can, p = 3)
 
-### These are patches that were reserved after 1th round optimization. 
+### These are patches that were reserved after 1st round optimization. 
 dim(pp)
 #> [1] 53  6
 
@@ -154,17 +154,17 @@ head(pp)
 # 71       85     1    53844 POLYGON ((-122.8034 48.9431...         71   34
 # 151     190     1    23033 POLYGON ((-121.9839 48.8972...         37    4
 
-### You may write out polygon of 1th round prioritization ###
+### You may write out polygon of 1st round prioritization ###
 st_write(pp, "1th_polygon.shp")
 
 ###########################################################################################
-#### The 2th round prioritization ###
-#### There are 53 paches were reserved after 1th round prioritization,
-#### With this number, user can decide how many patches are going to be discarded ######
+#### The 2nd round prioritization ###
+#### There are 53 paches reserved after 1st round prioritization,
+#### With this number, the user can decide how many patches are going to be discarded ######
 #### Here, select high ranked/priority patches by discarding the rear 23 CI ranked patches ####
 sub<-subset(pp, Rank > 23)
 
-### These are patches that were reserved after 2th round optimization.
+### These are patches that were reserved after 2nd round optimization.
 dim(sub)
 #> [1] 30  6
 
@@ -202,7 +202,7 @@ head(ct)
 # 157     198     1    47539 POINT (-122.4444 48.90569)         75   31
 # 235     285     1   591013 POINT (-122.3689 48.83717)        910   49
 
-### You may write out polygon of 2th round prioritization ###
+### You may write out polygon of 2nd round prioritization ###
 st_write(sub, "2th_polygon.shp")
 
 ### You may write out the survey centroids ###
@@ -217,8 +217,8 @@ mytrip <- trips[[1]]$trip
 st_write(mytrip, "My_trip.shp")
 
 ###########################################################################################
-### Based on former 1th and 2th rounds prioritization, user can decide how many patche can be removed,
-### during 1th (p) and 2th (r) rounds prioritizations,
+### Based on former 1st and 2nd round prioritization, the user can decide how many patches can be removed,
+### during 1st (p) and 2nd (r) round prioritizations,
 ### so, it is ready to run enmRoute 
 
 mm<-enmRoute(pred1 = pred1, pred2 = pred2, p = 3, r = 23, obs = occ, b = 1000)  
@@ -240,8 +240,8 @@ sum(mm$distance)
 ###########################################################
 ### Plot and plan the trip ###
 ### Solid red line denote proposed survey route,
-### Blue and yellow area represent represent patches that were generate by ecological niche model predictios and distributional records buffering. 
-### Red areas mean patches that were reserved after 2 rounds prioritizations, dropped pins denote centroids of high ranked patches
+### Blue and yellow area represent represent patches that were generated by ecological niche model predictions and distributional records buffering. 
+### Red areas mean patches that were reserved after 2 rounds of prioritizations, dropped pins denote centroids of high ranked patches
 xy<-st_coordinates(ct)
 ggg<-leaflet()%>%
   addPolygons(data=mytrip,fillOpacity=0,color="red",stroke=T)%>%
@@ -261,10 +261,10 @@ saveWidget(ggg, file = "enm_RouteMap.html")
 
 ## Exercise 2
 
-This is an advanced exercise which could help user to optimize survey
+This is an advanced exercise which could help the user to optimize a survey
 route. It works by running the above procedure in an iterative
 manner to generate the relationship between survey expense and number of
-patches that plan to survey. Total survey expenses would depend on surveying
+patches that will be surveyed. Total survey expenses would depend on surveying
 expense spent in these high ranked patches and driving time between the
 patches. The driving time (i.e., minute)/distance (i.e., kilometer)  would be 
 closely correlated with the distance between the centroids of these patches. 
@@ -275,20 +275,20 @@ Ts = td + β * CCIs
 
 In this example, I select 30 patches after removing tiny (\< 3 km2) and
 low ranked (rear 23 patches) to test the relationship between survey
-expense and number of sampled patches. With this relationship, field
+expense and number of sampled patches. With this relationship, the field
 biologist could decide which/how many patches are going to be used for
 deploying samples, given available time and resources.
 
 User inputs: 
 
-Occurrence data (occ): an occurrence data with two columns of longitude and latitude for converting suitability into binary predictions,
+Occurrence data (occ): occurrence data with two columns of longitude and latitude for converting suitability into binary predictions,
 and for generating the candidate survey patahces.
 
 Suitability prediction (pred1): a raster surface representing suitability prediction, that could be attained using ecological niche model. 
 
 Binary prediction (pred2): a raster surface representing binary prediction (presence/absence), that could be attained by thresholding suitability prediction.
 
-Patch size limit (p): minimum patch size that should be considered in the surveying.
+Patch size limit (p): minimum patch size that should be considered in the survey.
 
 Capacity index limit (r): capacity index used to discard low suitability patches.
 
@@ -305,10 +305,10 @@ pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 ## To start optimization, we will use candidate patches/polygons that generate from former excise. 
 can<-canD(pred2 = pred2, obs = occ, b = 1000) #This would generate 2517 patches/polygons.
 
-# We calculate CCI for these patches, and then rank them by CCI, we optimize firstly by remove some small size patches (<3 km2).
+# We calculate CCI for these patches, and then rank them by CCI, we optimize firstly by removing some small size patches (<3 km2).
 pp<-rankCI(pred1 = pred1, canD = can, p = 3)
 
-### These are patches that were reserved after 1th round optimization.
+### These are patches that were reserved after 1st round optimization.
 dim(pp)
 #> [1] 53  6
 
@@ -332,7 +332,7 @@ head(pp)
 ###### u, number of patches to be iterative removed ### 
 cc<-tuneSite(shp=pp, r=23, u=1)
 
-### These are patches that were reserved after 2th round optimization.
+### These are patches that were reserved after 2nd round optimization.
 dim(cc)
 #> [1] 21  5
 
