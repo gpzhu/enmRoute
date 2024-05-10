@@ -392,6 +392,34 @@ ggarrange(eee, fff, labels = c("A", "B"))
 <img src="man/figures/README-example2-2.png" width="100%" />
 
 
+``` r
+
+### Finall, to help users choose parameters for running enmRoute, the scatter diagrams of accumulated CCI against driving time or distance
+### that were generated in the heuristic search were plotted and regressed.
+### The line (i.e., Pareto curve) that was fit to these scatter points is used to estimate patch capacity or size based on driving time
+
+formula <- y ~ poly(x, 2, raw = TRUE)
+hhh <-ggplot(cc, aes(x=Driving_time, y=Accumulated_capacity)) +
+  geom_point(size = 5, color = "#FFFFFF", fill = "#000000", shape = 21)+
+  stat_poly_line(formula = formula, linewidth=2,se = T,color = "red") +
+  stat_poly_eq(use_label("eq"), formula = formula,label.y = "bottom", label.x = "right",size = 6)+
+  stat_poly_eq(use_label("R2"), formula = formula,size = 6)+
+  #geom_smooth(se = FALSE, method = "lm", size=2)+
+  theme(plot.subtitle = element_text(family = "serif", size = 12, colour = "gray0"), 
+        plot.caption = element_text(colour = "gray0"), 
+        axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 16, colour = "gray0"),
+        axis.line = element_line(linetype = "solid"),
+        plot.title = element_text(size = 12)) +
+  labs(x = "Driving time (min)", y = "Accumulated capacity")
+
+hhh
+
+```
+<img src="man/figures/Pareto curve.png" width="100%" />
+
+
+
 References:
 
 Baguette, M. and Stevens, V. 2013. Predicting minimum area requirements of butterflies using life-history traits. - J Insect Conserv 17: 645–652.
