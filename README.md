@@ -110,7 +110,7 @@ plot(pred1)
 points(occ,pch = 16)
 ```
 
-<img src="man/figures/input.png" width="80%" />
+<img src="man/figures/WA_input.png" width="80%" />
 
 ``` r
 ################################## Note #####################################
