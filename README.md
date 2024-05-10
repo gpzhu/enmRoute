@@ -426,6 +426,8 @@ Baguette, M. and Stevens, V. 2013. Predicting minimum area requirements of butte
 
 Hui, C. 2006. Carrying capacity, population equilibrium, and environment’s maximal load. - Ecological Modelling 192: 317–320.
 
+Lotov, A. V. and Miettinen, K. 2008. Visualizing the Pareto frontier. - In: Branke, J. et al. (eds), Multiobjective Optimization: Interactive and Evolutionary Approaches. Lecture Notes in Computer Science. Springer, pp. 213–243.
+
 Pearson, R. G. et al. 2007. Predicting species distributions from small numbers of occurrence records: A test case using cryptic geckos in Madagascar. - Journal of Biogeography 34: 102–117.
 
 Zhu, G. P. et al. 2021. Assessing the ecological niche and invasion potential of the Asian giant hornet. PNAS. 117: 24646-24648
