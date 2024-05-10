@@ -307,14 +307,6 @@ Iterative number (u): Number of patches to be iterative removed (u).
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
 pred1 <-rast(system.file("extdata", "WA.tif", package="enmRoute"))
 
-### see how the input data look like
-plot(pred1)
-points(occ,pch = 16)
-```
-
-<img src="man/figures/README-example2-2.png" width="100%" />
-
-``` r
 #### Threshold model prediction ####
 pred2 <- thd(pred1 = pred1, points = occ, type = "p10", binary = TRUE)
 
