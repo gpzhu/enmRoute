@@ -82,7 +82,7 @@ Two procedures are employed below to prioritize these patches, by removing tiny 
 3km2) and discarding low carrying capacity index (CCI) ranked patches (here, 23 CCI
 rear patches).
 
-User inputs data: 
+User input data and parameter: 
 
 Occurrence data (occ): occurrence data with two columns of longitude and latitude for converting suitability into binary
 predictions, and for generating the candidate survey patahces.
