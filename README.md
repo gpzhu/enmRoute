@@ -1,7 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# enmRoute-seamless employ habitat suitability for planning field survey <img src="man/figures/imgfile.png"  align="right" height="139" />
+# enmRoute
+---seamless employ habitat suitability for planning field survey <img src="man/figures/imgfile.png"  align="right" height="139" />
 
 <!-- badges: start -->
 <!-- badges: end -->
