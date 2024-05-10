@@ -105,6 +105,14 @@ Buffering distance (b): the buffering distance (meter) of observed introduced re
 occ <-read.csv(system.file("extdata", "occ.csv", package="enmRoute"))
 pred1 <-rast(system.file("extdata", "WA.tif", package="enmRoute"))
 
+#### Take a glance to see how the input data look like
+plot(pred1)
+points(occ,pch = 16)
+```
+
+<img src="man/figures/README-example2-2.png" width="100%" />
+
+``` r
 ################################## Note #####################################
 #### Currently, we use WGS84, you may change coordinate system into a different equal area projection for the below running of optimization,
 #### But you have to change it back to WGS84 below before get the route  ####
