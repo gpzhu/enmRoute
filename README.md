@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 <!-- badges: end -->
-enmRoute seamlessly employ habitat suitability for planning field survey. The aim of this package is to use ecological niche model habitat suitability 
+enmRoute seamlessly employ habitat suitability predictions for planning field survey. The aim of this package is to use ecological niche model habitat suitability 
 predictions to plan the field survey of invasive species in an expected area. Our platform would promote detection and faciliate 
 earlier eradications programs in invasive species management. We hypothesize that field surveys that account for habitat 
 suitability predictions could promote field collections and capture more individuals in the field. 
@@ -36,12 +36,13 @@ b: The buffering distance of these observations, the unit is meter.
 
 ###########################################################################################
 
-enmRoute integrates suitability predictions and observations to optimize invasive species surveys, it can work under different conditions, 
+enmRoute uses suitability predictions and observations to optimize invasive species surveys, it can work under different conditions, 
 we illustrate these in detail below.
 
-1)  This Exercise 1 guides user step by step to generate a survey route, it demonstrates the inventory scheme for an invasive species (Northern giant hornet)
-    that has established population at the earlier stage, this example uses both introduced observations and habitat suitability predictions to generate candidate
-    survey patches, the exercies provide a survey route/scheme for Northern giant hornet detection in Washington State in United States.
+1)  This Exercise 1 guides user step by step to generate a survey route, it demonstrates the inventory scheme for an invasive species (Northern giant hornet: Vespa mandarinia)
+    that has established population at the earlier stage. Vespa mandarinia is native to Eas Asia, and has only been detected in Pacific Northwest, this species provided a model case
+    to test our framework for a species where early detection and eradication is a high priority, this example uses both introduced observations and habitat suitability predictions to generate candidate
+    survey patches, the exercies provide a survey route/scheme for Northern giant hornet detection in Washington State in United States. 
 
 3)  Exercise 2 is demostrating the idea of survey route optimization, i.e, how to optimize the driving survey route for invasive species surveying. 
 
@@ -381,3 +382,8 @@ ggarrange(eee, fff, labels = c("A", "B"))
 ```
 
 <img src="man/figures/README-example2-2.png" width="100%" />
+
+References:
+Baguette, M. and Stevens, V. 2013. Predicting minimum area requirements of butterflies using life-history traits. - J Insect Conserv 17: 645–652.
+Hui, C. 2006. Carrying capacity, population equilibrium, and environment’s maximal load. - Ecological Modelling 192: 317–320.
+Pearson, R. G. et al. 2007. Predicting species distributions from small numbers of occurrence records: A test case using cryptic geckos in Madagascar. - Journal of Biogeography 34: 102–117.
