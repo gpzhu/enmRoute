@@ -216,7 +216,7 @@ st_write(sub, "2th_polygon.shp")
 ### You may write out the survey centroids ###
 st_write(ct, "My_centroid.shp")
 
-#### You may use osrmTrip function (osrm package) to get the route here, makesure your coordinate system is WGS84 ######
+#### You may use osrmTrip function (osrm package) to get the route here, make sure your coordinate system is WGS84 ######
 ctxy<-as.data.frame(st_coordinates(ct))
 trips <- osrmTrip(loc = ctxy, returnclass = "sf")
 mytrip <- trips[[1]]$trip
