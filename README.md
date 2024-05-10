@@ -394,9 +394,9 @@ ggarrange(eee, fff, labels = c("A", "B"))
 
 ``` r
 
-### Finall, to help users choose parameters for running enmRoute, the scatter diagrams of accumulated CCI against driving time or distance
-### that were generated in the heuristic search were plotted and regressed.
-### The line (i.e., Pareto curve) that was fit to these scatter points is used to estimate patch capacity or size based on driving time
+### Finall, to help users choose parameters for running enmRoute, the scatter diagrams
+### of accumulated CCI against driving time/distance that were generated in the heuristic search can be plotted,
+### the regressed line (i.e., Pareto curve) that was fit to these scatter points can be used to estimate patch capacity or size based on driving time
 
 formula <- y ~ poly(x, 2, raw = TRUE)
 hhh <-ggplot(cc, aes(x=Driving_time, y=Accumulated_capacity)) +
