@@ -416,7 +416,7 @@ hhh <-ggplot(cc, aes(x=Driving_time, y=Accumulated_capacity)) +
 hhh
 
 ```
-<img src="man/figures/Pareto curve.png" width="80%" />
+<img src="man/figures/Pareto curve.png" width="60%" />
 
 
 
