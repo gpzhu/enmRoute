@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# enmRoute <img src="man/figures/imgfile.png"  align="right" height="139" />
+# enmRoute-seamless employ habitat suitability for planning field survey <img src="man/figures/imgfile.png"  align="right" height="139" />
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -11,8 +11,7 @@ predictions to plan the field survey of invasive species in an expected area. Ou
 earlier eradications programs in invasive species management. We hypothesize that field surveys that account for habitat 
 suitability predictions could promote field collections and capture more individuals in the field. 
 Our model-based survey route accounts for habitat suitability predictions and uses practicable driving time/distance to optimize survey efforts, 
-we hope that this package and its accompanying shiny will help field biologists design sampling routes for regional and national surveys.
-The shinny was created to faciate enmRoute applicaiton: https://losorio.shinyapps.io/enmroute.
+we hope that this package and its accompanying shiny (https://losorio.shinyapps.io/enmroute) will help field biologists design sampling routes for regional and national surveys.
 
 Key Words: Survey route, Optimization, Ecological Niche Model, Habitat suitability, Carrying Capactiy Index (CCI)
 
