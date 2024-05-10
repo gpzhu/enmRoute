@@ -385,5 +385,9 @@ ggarrange(eee, fff, labels = c("A", "B"))
 
 References:
 Baguette, M. and Stevens, V. 2013. Predicting minimum area requirements of butterflies using life-history traits. - J Insect Conserv 17: 645–652.
+
 Hui, C. 2006. Carrying capacity, population equilibrium, and environment’s maximal load. - Ecological Modelling 192: 317–320.
+
 Pearson, R. G. et al. 2007. Predicting species distributions from small numbers of occurrence records: A test case using cryptic geckos in Madagascar. - Journal of Biogeography 34: 102–117.
+
+Zhu, G. P. et al. 2021. Assessing the ecological niche and invasion potential of the Asian giant hornet. PNAS. 117: 24646-24648
