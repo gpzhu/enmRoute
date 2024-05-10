@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 <!-- badges: end -->
-enmRoute seamlessly employ habitat suitability predictions for planning field survey. The aim of this package is to use ecological niche model habitat suitability 
-predictions to plan the field survey of invasive species in an expected area. Our platform would promote detection and faciliate 
+enmRoute seamlessly employ habitat suitability predictions for planning field survey. The aim of this package is to use ecological niche model 
+habitat suitability predictions to plan the field survey of invasive species in an expected area. Our platform would promote detection and faciliate 
 earlier eradications programs in invasive species management. We hypothesize that field surveys that account for habitat 
 suitability predictions could promote field collections and capture more individuals in the field. 
 Our model-based survey route accounts for habitat suitability predictions and uses practicable driving time/distance to optimize survey efforts, 
