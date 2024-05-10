@@ -12,6 +12,7 @@ earlier eradications programs in invasive species management. We hypothesize tha
 suitability predictions could promote field collections and capture more individuals in the field. 
 Our model-based survey route accounts for habitat suitability predictions and uses practicable driving time/distance to optimize survey efforts, 
 we hope that this package and its accompanying shiny will help field biologists design sampling routes for regional and national surveys.
+The shinny was created to faciate enmRoute applicaiton: https://losorio.shinyapps.io/enmroute.
 
 Key Words: Survey route, Optimization, Ecological Niche Model, Habitat suitability, Carrying Capactiy Index (CCI)
 
