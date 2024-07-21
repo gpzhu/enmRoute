@@ -395,11 +395,10 @@ ggarrange(eee, fff, labels = c("A", "B"))
 
 ``` r
 ### In addition, user may want to examine the threshld impact on candidate patches, these can be visualized by ploting 
-### patch size, patch cohesion, and CPland, and number of patches against the threshold spectrum, which ranges 0-1000 here.
-### cohesion measures the physical connectedness of the patches in a particular class, ranging from
-### 0 (patches more subdivided) to 100 (patches completely connected and entire in shape).
-### CPland measures the relative coverage of the landscape by core areas of patches
-## two additional package need to load here
+### patch size, patch cohesion, CPland, and number of patches against the threshold spectrum (ranges 0-1000 here).
+### cohesion measures the physical connectedness of the patches in a particular class, ranging from 0 (patches more subdivided) to 100 (patches completely connected and entire in shape).
+### CPland measures the relative coverage of the landscape by patches.
+## two additional package need to load here,landscapemetrics is used to calculate patch cohesion and CPland.
 library(gridExtra)
 library(landscapemetrics)
 
@@ -412,7 +411,7 @@ head(ccc)
 ## define the threshold spectrum, habitat suitability prediction for Northern giant hornet ranging 0-1000.
 tt<-seq(10,990,10)
 
-### loop start here to write in five patch metrix
+### loop start here to write in the above patch metrix
 for(i in 1:99){
 pred2<- thd(pred1 = pred1, threshold = tt[i], binary = TRUE)
 cand<-canD(pred2 = pred2, obs = occ, b = 1000)
