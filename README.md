@@ -404,7 +404,7 @@ library(landscapemetrics)
 
 ### define an empty matrix to write in
 ccc = matrix(nrow = 99,  ncol = 6, byrow = TRUE )
-colnames(ccc) = c("Threshold", "Number_of_patch", "Cohesion","CPLand","Size_mean","Size_SD")
+colnames(ccc) = c("Threshold", "Number_of_patches", "Cohesion","CPLand","Patch size_mean","Patch size_SD")
 ccc<-as.data.frame(ccc)
 head(ccc)
 
@@ -428,9 +428,9 @@ ccc[i,6]<-sd(ss)
 }
 
 ###plot
-p1<-ggplot(data=ccc, aes(x=Threshold, y=Size_mean))+ 
+p1<-ggplot(data=ccc, aes(x=Threshold, y=Patch size_mean))+ 
   geom_point() + 
-  geom_line(aes(x=Threshold, y=Size_mean))
+  geom_line(aes(x=Threshold, y=Patch size_mean))
 
 p2<-ggplot(data=ccc, aes(x=Threshold, y=Cohesion))+ 
   geom_point() + 
@@ -440,9 +440,9 @@ p3<-ggplot(data=ccc, aes(x=Threshold, y=CPLand))+
   geom_point() + 
   geom_line(aes(x=Threshold, y=CPLand))         
 
-p4<-ggplot(data=ccc, aes(x=Threshold, y=Number_of_patch))+ 
+p4<-ggplot(data=ccc, aes(x=Threshold, y=Number_of_patches))+ 
          geom_point() + 
-         geom_line(aes(x=Threshold, y=Number_of_patch))
+         geom_line(aes(x=Threshold, y=Number_of_patches))
 
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 
