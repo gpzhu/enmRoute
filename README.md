@@ -474,7 +474,7 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 
 ```
-<img src="man/figures/Pareto curve_NGH.png" width="60%" />
+<img src="man/figures/ThdImpact.png" width="60%" />
 
 ``` r
 
