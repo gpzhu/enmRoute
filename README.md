@@ -68,6 +68,7 @@ library(smoothr)
 library(exactextractr)
 library(ggpmisc)
 library(ggpubr)
+
 ```
 
 ## Exercise 1
@@ -394,9 +395,9 @@ ggarrange(eee, fff, labels = c("A", "B"))
 
 ``` r
 
-### Finall, to help users choose parameters for running enmRoute, the scatter diagrams
+### Finally, to help users choose parameters for running enmRoute, the scatter diagrams
 ### of accumulated CCI against driving time/distance that were generated in the heuristic search can be plotted,
-### the regressed line (i.e., Pareto curve) that was fit to these scatter points can be used to estimate patch capacity or size based on driving time
+### the regressed line (i.e., Pareto curve) that was fit to these scatter points can be used to estimate patch capacity or size based on driving time.
 
 formula <- y ~ poly(x, 2, raw = TRUE)
 hhh <-ggplot(cc, aes(x=Driving_time, y=Accumulated_capacity)) +
@@ -418,7 +419,64 @@ hhh
 ```
 <img src="man/figures/Pareto curve_NGH.png" width="60%" />
 
+``` r
+### In addition, user may want to examine the threshld impact, these can be visualized by ploting 
+### patch size, patch cohesion, and CPland, and number of patches against the threshold spectrum.
+### cohesion measures the physical connectedness of the patches in a particular class, ranging from
+### 0 (patches more subdivided) to 100 (patches completely connected and entire in shape).
+### CPland measures the relative coverage of the landscape by core areas of patches
+library(gridExtra)
+library(landscapemetrics)
 
+### define matris to write in
+ccc = matrix(nrow = 99,  ncol = 6, byrow = TRUE )
+head(ccc)
+colnames(ccc) = c("Threshold", "Number_of_patch", "Cohesion","CPLand","Size_mean","Size_SD")
+ccc<-as.data.frame(ccc)
+tt<-seq(10,990,10)
+
+### loop start here to write in five patch metrix
+for(i in 1:99){
+pred2<- thd(pred1 = pred1, threshold = tt[i], binary = TRUE)
+cand<-canD(pred2 = pred2, obs = occ, b = 1000)
+
+ccc[i,1]=tt[i]
+ccc[i,2]=dim(cand)[1]
+
+ccc[i,3]<-lsm_c_cohesion(pred2)[1,6]
+ccc[i,4]<-lsm_c_cpland(pred2)[1,6]
+
+ss <- exact_extract(pred1, cand, "count")
+ccc[i,5]<-mean(ss)
+ccc[i,6]<-sd(ss)
+}
+
+###plot
+
+p1<-ggplot(data=ccc, aes(x=Threshold, y=Size_mean))+ 
+  geom_point() + 
+  geom_line(aes(x=Threshold, y=Size_mean))
+
+p2<-ggplot(data=ccc, aes(x=Threshold, y=Cohesion))+ 
+  geom_point() + 
+  geom_line(aes(x=Threshold, y=Cohesion))
+
+p3<-ggplot(data=ccc, aes(x=Threshold, y=CPLand))+ 
+  geom_point() + 
+  geom_line(aes(x=Threshold, y=CPLand))         
+
+p4<-ggplot(data=ccc, aes(x=Threshold, y=Number_of_patch))+ 
+         geom_point() + 
+         geom_line(aes(x=Threshold, y=Number_of_patch))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2)
+
+
+
+```
+<img src="man/figures/Pareto curve_NGH.png" width="60%" />
+
+``` r
 
 References:
 
