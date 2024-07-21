@@ -394,37 +394,12 @@ ggarrange(eee, fff, labels = c("A", "B"))
 
 
 ``` r
-
-### Finally, to help users choose parameters for running enmRoute, the scatter diagrams
-### of accumulated CCI against driving time/distance that were generated in the heuristic search can be plotted,
-### the regressed line (i.e., Pareto curve) that was fit to these scatter points can be used to estimate patch capacity or size based on driving time.
-
-formula <- y ~ poly(x, 2, raw = TRUE)
-hhh <-ggplot(cc, aes(x=Driving_time, y=Accumulated_capacity)) +
-  geom_point(size = 5, color = "#FFFFFF", fill = "#000000", shape = 21)+
-  stat_poly_line(formula = formula, linewidth=2,se = T,color = "red") +
-  stat_poly_eq(use_label("eq"), formula = formula,label.y = "bottom", label.x = "right",size = 6)+
-  stat_poly_eq(use_label("R2"), formula = formula,size = 6)+
-  #geom_smooth(se = FALSE, method = "lm", size=2)+
-  theme(plot.subtitle = element_text(family = "serif", size = 12, colour = "gray0"), 
-        plot.caption = element_text(colour = "gray0"), 
-        axis.title = element_text(size = 20), 
-        axis.text = element_text(size = 16, colour = "gray0"),
-        axis.line = element_line(linetype = "solid"),
-        plot.title = element_text(size = 12)) +
-  labs(x = "Driving time (min)", y = "Accumulated capacity")
-
-hhh
-
-```
-<img src="man/figures/Pareto curve_NGH.png" width="60%" />
-
-``` r
-### In addition, user may want to examine the threshld impact, these can be visualized by ploting 
-### patch size, patch cohesion, and CPland, and number of patches against the threshold spectrum.
+### In addition, user may want to examine the threshld impact on candidate patches, these can be visualized by ploting 
+### patch size, patch cohesion, and CPland, and number of patches against the threshold spectrum, which ranges 0-1000 here.
 ### cohesion measures the physical connectedness of the patches in a particular class, ranging from
 ### 0 (patches more subdivided) to 100 (patches completely connected and entire in shape).
 ### CPland measures the relative coverage of the landscape by core areas of patches
+## two additional package need to load here
 library(gridExtra)
 library(landscapemetrics)
 
@@ -434,7 +409,7 @@ colnames(ccc) = c("Threshold", "Number_of_patch", "Cohesion","CPLand","Size_mean
 ccc<-as.data.frame(ccc)
 head(ccc)
 
-## define the threshold spectrum, habitat suitability prediction ranging 0-1000.
+## define the threshold spectrum, habitat suitability prediction for Northern giant hornet ranging 0-1000.
 tt<-seq(10,990,10)
 
 ### loop start here to write in five patch metrix
@@ -477,7 +452,33 @@ grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ``` r
 
+### Finally, to help users choose parameters for running enmRoute, the scatter diagrams
+### of accumulated CCI against driving time/distance that were generated in the heuristic search can be plotted,
+### the regressed line (i.e., Pareto curve) that was fit to these scatter points can be used to estimate patch capacity or size based on driving time.
 
+formula <- y ~ poly(x, 2, raw = TRUE)
+hhh <-ggplot(cc, aes(x=Driving_time, y=Accumulated_capacity)) +
+  geom_point(size = 5, color = "#FFFFFF", fill = "#000000", shape = 21)+
+  stat_poly_line(formula = formula, linewidth=2,se = T,color = "red") +
+  stat_poly_eq(use_label("eq"), formula = formula,label.y = "bottom", label.x = "right",size = 6)+
+  stat_poly_eq(use_label("R2"), formula = formula,size = 6)+
+  #geom_smooth(se = FALSE, method = "lm", size=2)+
+  theme(plot.subtitle = element_text(family = "serif", size = 12, colour = "gray0"), 
+        plot.caption = element_text(colour = "gray0"), 
+        axis.title = element_text(size = 20), 
+        axis.text = element_text(size = 16, colour = "gray0"),
+        axis.line = element_line(linetype = "solid"),
+        plot.title = element_text(size = 12)) +
+  labs(x = "Driving time (min)", y = "Accumulated capacity")
+
+hhh
+
+```
+<img src="man/figures/Pareto curve_NGH.png" width="60%" />
+
+
+
+``` r
 
 
 References:
