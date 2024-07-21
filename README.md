@@ -447,7 +447,7 @@ p4<-ggplot(data=ccc, aes(x=Threshold, y=Number_of_patches))+
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 
 ```
-<img src="man/figures/ThdEffect.png" width="60%" />
+<img src="man/figures/ThdEffect.png" width="80%" />
 
 ``` r
 
