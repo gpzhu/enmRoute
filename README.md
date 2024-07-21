@@ -428,11 +428,13 @@ hhh
 library(gridExtra)
 library(landscapemetrics)
 
-### define matris to write in
+### define an empty matrix to write in
 ccc = matrix(nrow = 99,  ncol = 6, byrow = TRUE )
-head(ccc)
 colnames(ccc) = c("Threshold", "Number_of_patch", "Cohesion","CPLand","Size_mean","Size_SD")
 ccc<-as.data.frame(ccc)
+head(ccc)
+
+## define the threshold spectrum, habitat suitability prediction ranging 0-1000.
 tt<-seq(10,990,10)
 
 ### loop start here to write in five patch metrix
@@ -452,7 +454,6 @@ ccc[i,6]<-sd(ss)
 }
 
 ###plot
-
 p1<-ggplot(data=ccc, aes(x=Threshold, y=Size_mean))+ 
   geom_point() + 
   geom_line(aes(x=Threshold, y=Size_mean))
@@ -471,12 +472,13 @@ p4<-ggplot(data=ccc, aes(x=Threshold, y=Number_of_patch))+
 
 grid.arrange(p1, p2, p3, p4, nrow = 2)
 
-
-
 ```
 <img src="man/figures/ThdImpact.png" width="60%" />
 
 ``` r
+
+
+
 
 References:
 
