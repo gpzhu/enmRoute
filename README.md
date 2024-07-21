@@ -395,7 +395,7 @@ ggarrange(eee, fff, labels = c("A", "B"))
 
 ``` r
 ### In addition, user may want to examine the threshld impact on candidate patches, these can be visualized by ploting 
-### patch size, patch cohesion, CPland, and number of patches against the threshold spectrum (ranges 0-1000 here).
+### patch size, patch cohesion, CPland, and number of patches against the threshold spectrum in habitat suitability predictions (here ranges 0-1000).
 ### Cohesion measures the physical connectedness of the patches in a particular class, ranging 0-100.
 ### CPland measures the relative coverage of the landscape by patches.
 ## Two additional package need to load here, landscapemetrics is used to calculate patch cohesion and CPland.
