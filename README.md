@@ -171,11 +171,11 @@ st_write(pp, "1th_polygon.shp")
 #### There are 53 paches reserved after 1st round prioritization,
 #### With this number, the user can decide how many patches are going to be discarded ######
 #### Here, select high ranked/priority patches by discarding the rear 23 CI ranked patches ####
-sub<-subset(pp, Rank > 33)
+sub<-subset(pp, Rank > 23)
 
 ### These are patches that were reserved after 2nd round optimization.
 dim(sub)
-#> [1] 20  6
+#> [1] 30  6
 
 head(sub)
 # Simple feature collection with 6 features and 5 fields
@@ -195,7 +195,7 @@ head(sub)
 ct<-st_centroid(sub)
 
 dim(ct)
-#> [1] 20  6
+#> [1] 30  6
 
 head(ct)
 # Simple feature collection with 6 features and 5 fields
@@ -237,11 +237,11 @@ mytrip<-mm$geometry
 
 #### get survey driving time (min) ####
 sum(mm$duration)
-#> [1] 1021.515
+#> [1] 1046.38
 
 #### get survey driving distance (km) ####
 sum(mm$distance)
-#> [1] 787.8568
+#> [1] 789.3445
 
 ### You may write out survey route ###
 ### st_write(mytrip, "Mytrip.shp")
